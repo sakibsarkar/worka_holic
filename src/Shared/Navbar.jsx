@@ -4,10 +4,8 @@ import logo from "../../public/logo.png";
 
 const Navbar = () => {
     return (
-        <nav className="bg-transparentw-full flex justify-center py-[20px]">
+        <nav className="bg-white w-full flex justify-center py-[20px]">
             <div className="w-[1300px] flex justify-between items-center">
-
-
                 <div className="logo w-150px">
                     <Image src={logo} width={170} height={170} alt="logo" />
                 </div>
@@ -22,7 +20,7 @@ const Navbar = () => {
 
                 <div className="flex justify-between items-center gap-3">
                     <Link href={"/register"}>Hire people</Link>
-                    <Link href={"/login"} className="bg-white flex justify-center items-center w-[120px] py-[7px] rounded-3xl text-[#007456s]">Login</Link>
+                    <Link href={"/login"} className="bg-[#007456] text-white flex justify-center items-center w-[120px] py-[7px] rounded-3xl text-[#007456s]">Login</Link>
                 </div>
 
             </div >
