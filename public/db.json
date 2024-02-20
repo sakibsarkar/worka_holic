@@ -1,0 +1,26 @@
+[
+    {
+        "id":1,
+        "title":"Front End Developer",
+        "image":"https://i.ibb.co/4RcpCSF/image.png",
+        "description":"To work as a Front End Developer, specialize in crafting the user interface and experience of web applications. Master HTML, CSS, and JavaScript along with popular frameworks and libraries like React, Angular, or Vue.js. Create responsive and visually appealing layouts, optimize for performance, and ensure cross-browser compatibility.Back-end developers to integrate front-end components seamlessly."
+    },
+    {
+        "id":2,
+        "title":"Full Stack Developer",
+        "image":"https://i.ibb.co/Lnn5Ynt/image.png",
+        "description":"To work as a Full Stack Developer, master both front-end and back-end development technologies to create dynamic and scalable web applications. Develop proficiency in programming languages like JavaScript, HTML, CSS, and frameworks such as React, Angular, Node.js, and Django. Understand databases, server-side languages, and API development.A development stack is key to success."   
+    },
+    {
+        "id":3,
+        "title":"UX/UI Designer",
+        "image":"https://i.ibb.co/S620nJB/image.png",
+        "description":"To work as a UX/UI Designer, blend creativity with  user-centric design principles to craft intuitive and visually appealing digital experiences. Understand user needs, conduct research, and create wireframes and prototypes. Collaborate closely with cross-functional teams, iterate designs based on feedback, and stay updated with design trends and tools. A strong portfolio showcasing your design skills in this role."   
+    },
+    {
+        "id":4,
+        "title":"DevOps Engineer",
+        "image":"https://i.ibb.co/GnzwkM0/image.png",
+        "description":"To work as a DevOps Engineer, focus on mastering automation, CI/CD pipelines, infrastructure as code, cloud platforms, monitoring, and security. Collaborate effectively, stay updated with the latest tools and practices, gain hands-on experience, and consider obtaining relevant certifications. DevOps is about fostering collaboration, automating processes, and continuously improving software delivery."   
+    }
+]
