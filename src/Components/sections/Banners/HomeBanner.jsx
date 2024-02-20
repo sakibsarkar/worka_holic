@@ -1,9 +1,21 @@
+'use client'
 import PrimaryButton from '@/Components/buttons/PrimaryButton';
+import SelectBox from '@/Components/ui/SelectBox';
 import Image from 'next/image';
-import React from 'react';
+import React, { useState } from 'react';
 import { IoSearchSharp } from "react-icons/io5";
+const selectElements = [
+    { name: 'Web Design' },
+    { name: 'Logo Design' },
+    { name: 'Graphic' },
+    { name: 'Data entry' },
+    { name: 'SEO' },
+    { name: 'Mobile app' },
+]
 
 const HomeBanner = () => {
+    const [selected, setSelected] = useState(selectElements[0])
+
     return (
         <section className='bg-primary-color'>
             <div className="container px-5 md:px-0">
@@ -19,11 +31,10 @@ const HomeBanner = () => {
                                         </div>
                                         <input type="text" className='py-2 w-full px-2 focus-visible:outline-none' placeholder='Search...' />
                                     </div>
-                                    <div className='py-3 border-y lg:border-x w-full'>
-                                        <select name="" className=' w-full lg:w-[200px] py-2 px-2 focus-visible:outline-none' id="">
-                                            <option value="">Category</option>
-                                            <option value="">Category</option>
-                                        </select>
+                                    <div className='py-3 border-y md:border-y-0 lg:border-x w-full'>
+                                        
+                                        <SelectBox selectElements={selectElements} selected={selected} setSelected={setSelected} />
+                                       
                                     </div>
                                     <div className='py-3 text-center lg:text-left'>
                                         <PrimaryButton>
