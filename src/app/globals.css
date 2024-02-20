@@ -3,10 +3,13 @@
 @tailwind utilities;
 
 @layer components{
-    .btn {
-       @apply px-4 py-2 inline-block rounded-3xl text-center
-    }
-    .btn-primary {
-       @apply bg-primary-color text-white hover:bg-[#025e47] transition-all
-    }
+   .btn {
+      @apply px-4 py-2 inline-block rounded-3xl text-center
+   }
+   .btn-primary {
+      @apply bg-primary-color text-white hover:bg-[#025e47] transition-all
+   }
+   .box {
+      @apply container px-5 md:px-0 mx-auto
+   }
 }
