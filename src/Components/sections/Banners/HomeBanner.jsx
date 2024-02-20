@@ -5,6 +5,7 @@ import { IoSearchSharp } from "react-icons/io5";
 
 const HomeBanner = () => {
     
+
     return (
         <section className='bg-primary-color'>
             <div className="container px-5 md:px-0">
