@@ -2,11 +2,33 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer components{
-    .btn {
-       @apply px-4 py-2 inline-block rounded-3xl text-center
-    }
-    .btn-primary {
-       @apply bg-primary-color text-white hover:bg-[#025e47] transition-all
-    }
+@layer components {
+   .btn {
+      @apply px-4 py-2 inline-block rounded-3xl text-center
+   }
+
+   .btn-primary {
+      @apply bg-primary-color text-white hover:bg-[#025e47] transition-all
+   }
+}
+
+#activeRoute {
+   background-color: #025e47;
+   color: white;
+}
+
+#drawerOpen {
+   width: 100vw !important;
+   transition: 0.5s;
+
+}
+
+#drawerClose {
+   width: 0px !important;
+   transition: 0.5s;
+
+}
+
+.noScroll {
+   overflow-y: hidden !important;
 }
