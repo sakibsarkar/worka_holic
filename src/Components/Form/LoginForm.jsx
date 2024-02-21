@@ -1,14 +1,17 @@
 'use client'
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import React from 'react';
+import React, { useContext } from 'react';
 import { AiFillGoogleCircle } from 'react-icons/ai';
 import { FaFacebook, FaLinkedin } from 'react-icons/fa6';
 import { toast } from 'react-toastify';
 import { signIn } from "next-auth/react";
+import { UserContext } from '@/providers/UserProvider';
 
 const LoginForm = () => {
     const router = useRouter();
+    
+    const {setUser} = useContext(UserContext)
 
     const handleSubmit = async e => {
         e.preventDefault();
@@ -27,12 +30,20 @@ const LoginForm = () => {
                 redirect: false,
             });
       
-            console.log(res);
+          
             if (res.error) {
-                setError("Invalid Credentials");
+                toast.error("Invalid Credentials");
                 return;
             }
-      
+            try {
+                const res = await fetch(`/api/user`,{
+                    method:"GET"
+                });
+                const data = await res.json();
+                setUser(data?.user);
+            } catch (error) {
+                
+            }
             router.replace("/");
         } catch (error) {
             console.log(error);
