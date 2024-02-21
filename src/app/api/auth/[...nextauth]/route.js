@@ -30,7 +30,6 @@ export const authOptions = {
                     if (!passwordsMatch) {
                         return null;
                     }
-                    console.log("user", user);
                     return user;
                 } catch (error) {
                     console.log("Error: ", error);
@@ -43,12 +42,14 @@ export const authOptions = {
         async jwt({ token, user }) {
             if(user){
                 token.role = user?.role;
+                token.id = user?._id;
             }
             return token
         },
         async session({ session, token }) {
             // console.log("Sesson CallBack:" , session);
             session.user.role = token.role;
+            session.user.id = token.id;
             // session.user.avater = 'token.image';
             return session
         },

@@ -5,6 +5,7 @@ const nextConfig = {
             {  hostname: 'seeklogo.com' },
             {  hostname: 'civi.uxper.co' },
             {  hostname: 'fiverr-res.cloudinary.com' },
+            {  hostname: 't4.ftcdn.net' },
         ],
     },
 };
