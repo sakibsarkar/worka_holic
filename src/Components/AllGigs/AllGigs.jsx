@@ -27,12 +27,12 @@ const AllGigs = () => {
       <h1 className="mt-12 text-center text-4xl font-bold">
         Popular <span className="text-green-700">Gigs</span>
       </h1>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-7xl mx-auto">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 max-w-7xl mx-auto">
         {gigs.map((gig) => (
           <div key={gig.id}>
             <div className="py-10 mb-16">
               <div
-                className={`rounded-xl overflow-hidden max-w-sm shadow-lg border border-yellow-400 ${
+                className={`rounded-sm w-[300px] overflow-hidden shadow-lg border border-yellow-400 ${
                   fullDescription.includes(gig.id) ? "h-auto" : "h-[420px]"
                 }`}
               >
