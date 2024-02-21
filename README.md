@@ -16,12 +16,12 @@ pnpm dev
 ```
 
 ### Team members
-- [Sakib Sarkar](https://github.com/sakibsarkar)
 
+- [Sakib Sarkar](https://github.com/sakibsarkar)
+- [Ahammad Abdullah](https://github.com/ahammadabdullah)
 - [Sumitra paul](https://github.com/sumitrapaul)
 - [Binita Epa](https://github.com/binitaepa)
 - [Mohin Rana](https://github.com/mohinranait)
-
 
 ### Use Package
 
