@@ -10,6 +10,9 @@
    .btn-primary {
       @apply bg-primary-color text-white hover:bg-[#025e47] transition-all
    }
+   .box{
+      @apply container px-5 lg:px-0
+   }
 }
 
 #activeRoute {

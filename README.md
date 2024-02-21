@@ -25,5 +25,7 @@ pnpm dev
 
 ### Use Package
 
--  [HandlessUI](https://headlessui.com)
+- [HandlessUI](https://headlessui.com)
 - [React Icons](https://react-icons.github.io/react-icons)
+- [React Toastify](https://www.npmjs.com/package/react-toastify)
+- [Bcrypt](https://www.npmjs.com/package/bcrypt)
