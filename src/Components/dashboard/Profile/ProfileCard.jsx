@@ -21,7 +21,7 @@ const ProfileCard = () => {
   return (
     <div>
       {/* profile top card */}
-      <div className="p-8 border-[1px] border-gray-300 w-[400px] mb-10">
+      <div className="p-8 border-[1px] border-gray-300 w-[400px] mb-10 bg-white">
         <div className="flex flex-col items-center mb-5">
           <Image
             className="rounded-full"
@@ -53,7 +53,7 @@ const ProfileCard = () => {
         </div>
       </div>
       {/* description and skills cards */}
-      <div className="p-8 border-[1px] border-gray-300 w-[400px] ">
+      <div className="p-8 border-[1px] border-gray-300 w-[400px] bg-white ">
         {/* description */}
         <div>
           <div className="flex justify-between mb-4">

@@ -1,3 +1,4 @@
+import { FaPlusCircle } from "react-icons/fa";
 import Gig from "./Gig";
 
 const Gigs = () => {
@@ -23,13 +24,17 @@ const Gigs = () => {
   ];
   return (
     <div className="flex-1 ">
-      <div className="p-8 border-[1px] border-gray-300  mb-10">
+      <div className="p-8 border-[1px] border-gray-300  mb-10 bg-white">
         <p className="font-semibold">Gigs</p>
       </div>
       <div className="flex flex-wrap gap-5">
         {gigDetails.map((gig, index) => (
           <Gig key={index} gigDetails={gig} />
         ))}
+        <div className=" border-[1px] border-gray-300 bg-white w-[300px] flex flex-col justify-center items-center h-[295px] gap-5 ">
+          <FaPlusCircle className="text-6xl" />{" "}
+          <p className="font-medium">Create a new gig</p>
+        </div>
       </div>
     </div>
   );
