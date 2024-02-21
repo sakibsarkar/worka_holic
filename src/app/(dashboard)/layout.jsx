@@ -12,7 +12,7 @@ const DashboardLayout = async ({ children }) => {
   return (
     <>
       <NavBar />
-      <div className="max-w-7xl mx-auto">{children}</div>
+      <div className="max-w-7xl mx-auto my-10">{children}</div>
     </>
   );
 };

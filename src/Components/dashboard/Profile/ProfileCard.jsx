@@ -17,8 +17,9 @@ const ProfileCard = () => {
   };
   const userImageUrl =
     "https://cdn.discordapp.com/attachments/796439138403352596/1209968948695670834/9743ecac80966a95e9d328c08b995c04.png?ex=65e8da65&is=65d66565&hm=5601b0aa10312c569e59ace0e04ae26ec63056e4db9011501a0e8eef24289c4e&";
+
   return (
-    <>
+    <div>
       {/* profile top card */}
       <div className="p-8 border-[1px] border-gray-300 w-[400px] mb-10">
         <div className="flex flex-col items-center mb-5">
@@ -97,7 +98,7 @@ const ProfileCard = () => {
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 
