@@ -32,7 +32,7 @@ const AllGigs = () => {
           <div key={gig.id}>
             <div className="py-10 mb-16">
               <div
-                className={`rounded-sm w-full overflow-hidden shadow-lg border border-yellow-400 ${
+                className={`rounded-sm w-full overflow-hidden border ${
                   fullDescription.includes(gig.id) ? "h-auto" : "h-[420px]"
                 }`}
               >
