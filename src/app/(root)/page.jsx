@@ -1,4 +1,5 @@
 import AllGigs from "@/Components/AllGigs/AllGigs";
+import ChoosePlans from "@/Components/ChoosePlans/ChoosePlans";
 import HomeBanner from "@/Components/sections/Banners/HomeBanner";
 import { getServerSession } from "next-auth";
 import { authOptions } from "../api/auth/[...nextauth]/route";
@@ -14,6 +15,14 @@ const HomePage = async () => {
             <AllGigs />
         </>
     );
+const HomePage = () => {
+  return (
+    <>
+      <HomeBanner />
+      <AllGigs />
+      <ChoosePlans />
+    </>
+  );
 };
 
 export default HomePage;
