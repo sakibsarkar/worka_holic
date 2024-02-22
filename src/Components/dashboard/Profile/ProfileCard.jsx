@@ -1,8 +1,15 @@
 import Image from "next/image";
 import { FaSearchLocation } from "react-icons/fa";
 import { FaUser } from "react-icons/fa6";
+import { formatDate } from "@/utilsFunction/dateConverter";
 
-const ProfileCard = () => {
+// import { getServerSession } from "next-auth";
+// import { authOptions } from "@/app/api/auth/[...nextauth]/route";
+
+const ProfileCard = ({ userData = {} }) => {
+
+
+
   const userDetails = {
     name: "Ahammad Abdullah",
     userName: "ahammadabdullah",
@@ -18,6 +25,12 @@ const ProfileCard = () => {
   const userImageUrl =
     "https://cdn.discordapp.com/attachments/796439138403352596/1209968948695670834/9743ecac80966a95e9d328c08b995c04.png?ex=65e8da65&is=65d66565&hm=5601b0aa10312c569e59ace0e04ae26ec63056e4db9011501a0e8eef24289c4e&";
 
+
+  // const { user } = await getServerSession(authOptions);
+
+
+  const { languages, _id, name, userName, email, role, skills, country, responseTime, lastDeliveryTime, activeStatus, accountStatus, createdAt, updatedAt } = userData || {}
+
   return (
     <div>
       {/* profile top card */}
@@ -30,8 +43,8 @@ const ProfileCard = () => {
             height={200}
             alt="user.png"
           />
-          <h3 className="text-2xl font-semibold mt-3">{userDetails.name}</h3>
-          <p>@{userDetails.userName}</p>
+          <h3 className="text-2xl font-semibold mt-3">{name}</h3>
+          <p>@{userName}</p>
           <p>{userDetails.bio}</p>
         </div>
         <hr />
@@ -40,14 +53,14 @@ const ProfileCard = () => {
             <span className="flex items-center gap-4 font-medium">
               <FaSearchLocation /> <span>From</span>
             </span>
-            <span className="font-semibold"> {userDetails.from}</span>
+            <span className="font-semibold"> {country}</span>
           </p>
           <p className="flex justify-between">
             <span className="flex items-center gap-4 font-medium">
               <FaUser /> Member since
             </span>
             <span className="font-semibold">
-              {userDetails.accountCreatedAt}
+              {formatDate(createdAt)}
             </span>
           </p>
         </div>
@@ -72,7 +85,7 @@ const ProfileCard = () => {
             <p className="text-sm">Add new</p>
           </div>
           <div className="flex flex-wrap gap-4">
-            {userDetails.skills.map((skill, index) => (
+            {skills?.map((skill, index) => (
               <span key={index} className="bg-gray-100 px-3 py-1 rounded-full">
                 {skill}
               </span>
@@ -90,7 +103,7 @@ const ProfileCard = () => {
             <p className="text-sm">Add new</p>
           </div>
           <div className="flex flex-wrap gap-4">
-            {userDetails.language.map((language, index) => (
+            {languages?.type?.map((language, index) => (
               <span key={index} className="bg-gray-100 px-3 py-1 rounded-full">
                 {language}
               </span>

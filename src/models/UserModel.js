@@ -1,5 +1,4 @@
-
-import {model, Schema, models} from "mongoose"
+import { Schema, model, models } from "mongoose";
 
 const userSchema = new Schema({
     name: {

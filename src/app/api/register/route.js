@@ -1,7 +1,7 @@
-import { NextResponse } from "next/server";
-import bcrypt from "bcrypt";
 import ConnectDB from "@/config/db/ConnectDB";
 import User from "@/models/UserModel";
+import bcrypt from "bcrypt";
+import { NextResponse } from "next/server";
 
 export const POST = async (req) => {
     try {
@@ -9,10 +9,10 @@ export const POST = async (req) => {
         const body = await req.json();
         const password = body.password;
         const passGenarate = await bcrypt.hash(password, 10)
-        await User.create({...body, password: passGenarate})
-        return NextResponse.json({message : "Register",success:true},{status:201});
+        await User.create({ ...body, password: passGenarate })
+        return NextResponse.json({ message: "Register", success: true }, { status: 201 });
 
     } catch (error) {
-        return NextResponse.json({message : error.message},{status:500})
+        return NextResponse.json({ message: error.message }, { status: 500 })
     }
 } 

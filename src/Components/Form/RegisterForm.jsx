@@ -1,41 +1,41 @@
-'use client'
+"use client";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
 import React from "react";
+import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
 
 const RegisterForm = () => {
-    const {push} = useRouter();
-    const handleSubmit = async e => {
-        e.preventDefault();
+  const { push } = useRouter();
+  const handleSubmit = async e => {
+    e.preventDefault();
 
-        const name  = e.target.firstName.value + " " + e.target.lastName.value ;
-        const userName  = e.target.userName.value ;
-        const email  = e.target.email.value ;
-        const password  = e.target.password.value ;
-        if(!name) return toast.warning("Name is required");
-        if(!userName) return toast.warning("User name is required");
-        if(!email) return toast.warning("Email is required");
-        if(!password) return toast.warning("Password is required");
+    const name = e.target.firstName.value + " " + e.target.lastName.value;
+    const userName = e.target.userName.value;
+    const email = e.target.email.value;
+    const password = e.target.password.value;
+    if (!name) return toast.warning("Name is required");
+    if (!userName) return toast.warning("User name is required");
+    if (!email) return toast.warning("Email is required");
+    if (!password) return toast.warning("Password is required");
 
-        const obj = {name, userName, email,password};
-        try {
-          const res = await fetch(`/api/register`,{
-            method:"POST",
-            headers:{
-              "Content-type":"Application/json",
-            },
-            body: JSON.stringify(obj)
-          })
-          const data = await res.json();
-          if(data.success){
-            e.target.reset();
-            push('/login')
-          }
-        } catch (error) {
-          console.log("ERRor",error.message);
-        }
+    const obj = { name, userName, email, password };
+    try {
+      const res = await fetch(`/api/register`, {
+        method: "POST",
+        headers: {
+          "Content-type": "Application/json",
+        },
+        body: JSON.stringify(obj)
+      })
+      const data = await res.json();
+      if (data.success) {
+        e.target.reset();
+        push('/login')
+      }
+    } catch (error) {
+      console.log("ERRor", error.message);
     }
+  }
   return (
     <>
       <form onSubmit={handleSubmit} className="w-full">

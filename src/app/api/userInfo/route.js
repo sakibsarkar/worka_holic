@@ -11,7 +11,7 @@ export const GET = async () => {
         const session = await getServerSession(authOptions);
 
         const user = await User.findById({ _id: session?.user?.id }).select("-password")
-        return NextResponse.json({ message: "user", success: true, user }, { status: 200 });
+        return NextResponse.json(user, { status: 200 });
     } catch (error) {
         return NextResponse.json({ message: error.message }, { status: 500 })
     }

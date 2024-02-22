@@ -1,5 +1,6 @@
-import { FaPlusCircle } from "react-icons/fa";
+"use client";
 import Gig from "./Gig";
+import { FaPlusCircle } from "react-icons/fa";
 
 const Gigs = () => {
   const gigDetails = [
@@ -22,6 +23,29 @@ const Gigs = () => {
       price: 10,
     },
   ];
+
+
+  const handleCreateGig = async () => {
+    const res = await fetch("/api/gigs", {
+      method: "POST",
+      headers: {
+        "Content-type": "Application/json",
+      },
+      body: JSON.stringify({
+        image: "https://example.com/image1.jpg",
+        rating: 4.5,
+        title: "Professional Logo Design",
+        description: "I will create a unique and eye-catching logo for your business.",
+        Price: 50,
+        skils: ["Graphic Design", "Logo Design", "Illustrator"],
+        deliveryTime: 3
+      })
+    })
+    const x = await res.json()
+    console.log(x);
+
+  }
+
   return (
     <div className="flex-1 ">
       <div className="p-8 border-[1px] border-gray-300  mb-10 bg-white">
@@ -31,7 +55,8 @@ const Gigs = () => {
         {gigDetails.map((gig, index) => (
           <Gig key={index} gigDetails={gig} />
         ))}
-        <div className=" border-[1px] border-gray-300 bg-white w-[300px] flex flex-col justify-center items-center h-[295px] gap-5 ">
+
+        <div className=" border-[1px] border-gray-300 bg-white w-[300px] flex flex-col justify-center items-center h-[295px] gap-5 " onClick={handleCreateGig}>
           <FaPlusCircle className="text-6xl" />{" "}
           <p className="font-medium">Create a new gig</p>
         </div>

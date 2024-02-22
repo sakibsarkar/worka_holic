@@ -2,6 +2,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import logo from "../../public/logo.png";
+import { signOut } from "next-auth/react";
 import { usePathname } from "next/navigation";
 import { useContext, useState } from "react";
 import { FaInfo } from "react-icons/fa6";
@@ -11,7 +12,6 @@ import { MdOutlinePriceChange } from "react-icons/md";
 import { RxHamburgerMenu } from "react-icons/rx";
 import { RxCross2 } from "react-icons/rx";
 import { UserContext } from "@/providers/UserProvider";
-import {signOut} from "next-auth/react"
 
 const Navbar = () => {
     const {user,setUser} = useContext(UserContext)
