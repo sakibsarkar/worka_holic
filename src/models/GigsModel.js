@@ -1,6 +1,10 @@
 import { Schema, Types, model, models } from "mongoose";
 
 const gigsScema = new Schema({
+    userId: {
+        type: Types.ObjectId,
+        ref: "User"
+    },
     image: {
         type: String,
         required: true
@@ -28,7 +32,7 @@ const gigsScema = new Schema({
         required: true,
 
     },
-    skils: {
+    skills: {
         type: Array,
         required: true,
     },

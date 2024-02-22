@@ -1,27 +1,18 @@
 "use client";
 import Gigs from "@/Components/dashboard/Profile/Gigs";
 import ProfileCard from "@/Components/dashboard/Profile/ProfileCard";
-import React, { useEffect, useState } from "react";
+import { UserContext } from "@/providers/UserProvider";
+import React, { useContext } from "react";
 
 const ProfilePage = () => {
 
-  const [user, setUser] = useState({})
-  const [isLoading, setIsLoading] = useState(true)
-  useEffect(() => {
-    const handleGetUser = async () => {
-      setIsLoading(true)
-      const res = await fetch("/api/userInfo")
-      const data = await res.json()
-      setUser(data)
-      setIsLoading(false)
-    }
-    handleGetUser()
-  }, [])
+  const {user,loading} = useContext(UserContext)
+
 
   return (
     <div className="flex gap-20">
       {
-        isLoading ?
+        loading ?
           ""
           :
           <>
