@@ -48,7 +48,7 @@ const ChoosePlans = () => {
         Choose <span className="text-primary-color"> Your Plan</span>
       </h3>
       <p className="text-center">Select a package from above and submit job</p>
-      <div className="flex gap-20 justify-center mt-10">
+      <div className="flex gap-20 justify-center mt-10 flex-wrap">
         {details?.map((detail, index) => (
           <ChoosePlansCard key={index} details={detail} />
         ))}
