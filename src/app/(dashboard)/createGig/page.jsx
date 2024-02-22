@@ -92,6 +92,7 @@ const page = () => {
               <IoIosArrowDown
                 onClick={() => setShowSkill(!showSkill)}
                 className="text-gray-600 mt-3 cursor-pointer"
+                
               ></IoIosArrowDown>
 
               <div className="relative">
