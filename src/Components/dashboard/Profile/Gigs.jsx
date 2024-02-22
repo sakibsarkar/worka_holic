@@ -1,4 +1,5 @@
 "use client";
+import Link from "next/link";
 import Gig from "./Gig";
 import { FaPlusCircle } from "react-icons/fa";
 
@@ -60,7 +61,7 @@ const Gigs = () => {
 
           <div className="magic_hover absolute  bg-primary-color z-1"></div>
           <p className="magic_text font-medium relative z-[2] flex flex-col justify-center items-center">
-            <FaPlusCircle className="text-6xl" />
+            <Link href="/createGig"><FaPlusCircle className="text-6xl" /></Link>
             Create a new gig
           </p>
         </div>
