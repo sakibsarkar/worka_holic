@@ -7,7 +7,17 @@ import { authOptions } from "../auth/[...nextauth]/route";
 export const GET = async (req) => {
     const session = await getServerSession(authOptions)
     const userId = session.user.id
-    const result = await Gig.find({ userId: userId }).populate("userId")
+    const status = req.nextUrl.searchParams.get("status")
+    
+    let query = {
+        userId: userId
+    }
+
+    if (status) {
+        query.status = status
+    }
+
+    const result = await Gig.find(query).populate("userId")
     return NextResponse.json(result)
 
 }
