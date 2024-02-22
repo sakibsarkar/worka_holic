@@ -1,9 +1,12 @@
-import { Schema, model, models } from "mongoose";
+import { Schema, Types, model, models } from "mongoose";
 
 const gigsScema = new Schema({
     image: {
         type: String,
         required: true
+    },
+    userId: {
+        type: Types.ObjectId
     },
     rating: {
         type: Number,
