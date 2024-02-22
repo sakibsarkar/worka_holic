@@ -4,6 +4,7 @@ import React, { createContext, useEffect, useState } from 'react';
 export const UserContext = createContext({});
 const UserProvider = ({children}) => {
     const [user, setUser] = useState(null);
+    const [loading, setLoading] = useState(true);
   
     const logout = () => {
       // Perform logout logic
@@ -12,16 +13,28 @@ const UserProvider = ({children}) => {
 
     useEffect(() => {
         const getUser = async () => {
-            const res = await fetch(`/api/user`,{
-                method:"GET"
-            });
-            const data = await res.json();
-            setUser(data?.user);
+            setLoading(true)
+            try {
+              const res = await fetch(`/api/user`,{
+                  method:"GET"
+              });
+              const data = await res.json();
+              setUser(data?.user);
+              
+            } catch (error) {
+              console.log(error);
+            }finally{
+              setLoading(false)
+            }
         }
         getUser();
     },[])
 
-    const obj = { user, setUser, logout }
+    const obj = { 
+      user, setUser, 
+      logout,
+      loading, setLoading
+     }
 
   
     return (

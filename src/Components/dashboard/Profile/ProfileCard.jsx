@@ -1,13 +1,24 @@
+'use client'
 import Image from "next/image";
-import { FaSearchLocation } from "react-icons/fa";
-import { FaUser } from "react-icons/fa6";
+import { FaEdit, FaSearchLocation } from "react-icons/fa";
+import { FaCamera, FaPen, FaUser } from "react-icons/fa6";
 import { formatDate } from "@/utilsFunction/dateConverter";
+import ModalBox from "@/Components/ui/ModalBox";
+import { useContext, useState } from "react";
+import UpdateDisplayName from "@/Components/Form/userInfo/UpdateDisplayName";
+import UpdateBio from "@/Components/Form/userInfo/UpdateBio";
+import { singleImage } from "@/config/uploadImage/UploadImage";
+import { UserContext } from "@/providers/UserProvider";
+import UpdateSellerTitle from "@/Components/Form/userInfo/UpdateSellerTitle";
 
 // import { getServerSession } from "next-auth";
 // import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 
 const ProfileCard = ({ userData = {} }) => {
-
+  const {setUser,user} = useContext(UserContext)
+  const [isOpen, setIsOpen] = useState(false)
+  const [isBio, setIsBio] = useState(false)
+  const [isTitle, setIsTitle] = useState(false)
 
 
   const userDetails = {
@@ -22,30 +33,63 @@ const ProfileCard = ({ userData = {} }) => {
     from: "Dhaka",
     accountCreatedAt: "May 2014",
   };
-  const userImageUrl =
-    "https://cdn.discordapp.com/attachments/796439138403352596/1209968948695670834/9743ecac80966a95e9d328c08b995c04.png?ex=65e8da65&is=65d66565&hm=5601b0aa10312c569e59ace0e04ae26ec63056e4db9011501a0e8eef24289c4e&";
+  const userImageUrl ="https://t4.ftcdn.net/jpg/05/42/36/11/360_F_542361185_VFRJWpR2FH5OiAEVveWO7oZnfSccZfD3.jpg";
 
 
-  // const { user } = await getServerSession(authOptions);
+  const handleAvater = async (e) => {
+    const img = e.target.files[0];
+    const url = await singleImage(img)
+
+    const res = await fetch(`/api/user`,{
+      method:"PATCH",
+      headers:{
+          "Content-type":"Application/json",
+      },
+      body: JSON.stringify({avater:url})
+    })
+    const data = await res.json();
+    
+    if(data.success){
+      setUser({...user, avater:url})
+    }
+
+  }
 
 
-  const { languages, _id, name, userName, email, role, skills, country, responseTime, lastDeliveryTime, activeStatus, accountStatus, createdAt, updatedAt } = userData || {}
+  const { languages, _id,bio, avater, name, userName,accountTitle, email, role, skills, country, responseTime, lastDeliveryTime, activeStatus, accountStatus, createdAt, updatedAt } = userData || {}
 
   return (
     <div>
       {/* profile top card */}
       <div className="p-8 border-[1px] border-gray-300 w-[400px] mb-10 bg-white">
         <div className="flex flex-col items-center mb-5">
-          <Image
-            className="rounded-full"
-            src={userImageUrl}
-            width={200}
-            height={200}
-            alt="user.png"
-          />
-          <h3 className="text-2xl font-semibold mt-3">{name}</h3>
+            <div className=" relative">
+                <Image
+                className="rounded-full border"
+                src={avater || userImageUrl}
+                width={200}
+                height={200}
+                alt="user.png"
+              />
+              <label htmlFor="avater" className="w-[30px] h-[30px] flex items-center justify-center rounded-full bg-gray-50 border border-gray-100 cursor-pointer absolute right-0 top-7">
+                <FaCamera className="text-gray-500" />
+                <input  type='file'
+                    name='image'
+                    accept='image/*'
+                   onChange={handleAvater} 
+                   className="hidden" 
+                   id="avater"  />
+              </label>
+            </div>
+          <h3 className="text-2xl font-semibold text-gray-800 mt-3 flex items-center gap-2">{name} <span onClick={() => setIsOpen(!isOpen)} className="cursor-pointer"><FaPen size={15} /></span> </h3>
+          <ModalBox title={"Change Display name"} isOpen={isOpen} setIsOpen={setIsOpen}>
+            <UpdateDisplayName isOpen={isOpen} setIsOpen={setIsOpen} />
+          </ModalBox>
+          <ModalBox title={"Title seller"} isOpen={isTitle} setIsOpen={setIsTitle}>
+            <UpdateSellerTitle isOpen={isTitle} setIsOpen={setIsTitle} />
+          </ModalBox>
           <p>@{userName}</p>
-          <p>{userDetails.bio}</p>
+          <p className="flex items-center gap-2">{accountTitle} <span onClick={() => setIsTitle(!isTitle)} className="cursor-pointer text-gray-600"><FaPen size={10} /></span> </p>
         </div>
         <hr />
         <div className="pt-5">
@@ -71,9 +115,12 @@ const ProfileCard = ({ userData = {} }) => {
         <div>
           <div className="flex justify-between mb-4">
             <p className="font-semibold">Description</p>{" "}
-            <p className="text-sm">Edit Description</p>
+            <p className="text-sm cursor-pointer" onClick={() => setIsBio(!isBio)} >Edit Description</p>
           </div>
-          <p>{userDetails.description}</p>
+          <p>{bio}</p>
+          <ModalBox title={"Seller bio"} isOpen={isBio} setIsOpen={setIsBio}>
+            <UpdateBio isOpen={isBio} setIsOpen={setIsBio} />
+          </ModalBox>
         </div>
         <div className="my-5">
           <hr />
