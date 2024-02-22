@@ -27,7 +27,7 @@ const Footer = () => {
               src={footerLogo}
               width={170}
               height={170}
-              alt="logo"
+              alt="footer logo"
             />
 
             <div className="absolute mt-16 text-white">
