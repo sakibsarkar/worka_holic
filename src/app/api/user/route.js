@@ -4,6 +4,7 @@ import { getServerSession } from "next-auth";
 import { NextResponse } from "next/server";
 import { authOptions } from "../auth/[...nextauth]/route";
 
+// GET single User by session id
 export const GET = async () => {
     try {
         ConnectDB();
@@ -16,3 +17,23 @@ export const GET = async () => {
         return NextResponse.json({ message: error.message }, { status: 500 })
     }
 } 
+
+
+export const PATCH = async (req) => {
+
+    try {
+        ConnectDB();
+        const session = await getServerSession(authOptions);
+        const body = await req.json();
+
+        await User.findByIdAndUpdate({_id:session?.user?.id}, body, {
+            new: true,
+            runValidators:true
+        })
+
+        return NextResponse.json({message:"Updated",success:true},{status:200})
+
+    } catch (error) {
+        return NextResponse.json({ message: error.message }, { status: 500 })
+    }
+}

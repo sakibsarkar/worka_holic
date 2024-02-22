@@ -34,6 +34,9 @@ const userSchema = new Schema({
     avater: {
         type: String,
     },
+    bio: {
+        type: String,
+    },
     role: {
         type: String,
         default: 'User', // User or Client

@@ -8,6 +8,7 @@ const nextConfig = {
             {  hostname: 'fiverr-res.cloudinary.com' },
             {  hostname: 't4.ftcdn.net' },
             {  hostname: 'img.freepik.com' },
+            {  hostname: 'i.ibb.co' },
         ],
     },
 };
