@@ -1,0 +1,25 @@
+.magic {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.magic_hover {
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    transition: 0.3s;
+}
+
+.magic:hover .magic_hover {
+    width: calc(100% + 150px);
+    border-radius: 0;
+    transform: rotate(45deg);
+    height: calc(100% + 150px);
+}
+
+.magic:hover .magic_text {
+    color: white !important;
+    transition: 0.3s;
+}

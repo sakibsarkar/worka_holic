@@ -1,8 +1,9 @@
-import { Inter } from "next/font/google";
+import "react-toastify/dist/ReactToastify.css";
+import "../styles/hover.css";
 import "./globals.css";
-import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 import AuthProvider from "@/providers/AuthProvider";
+import { Inter } from "next/font/google";
+import { ToastContainer } from "react-toastify";
 
 const inter = Inter({ subsets: ["latin"] });
 

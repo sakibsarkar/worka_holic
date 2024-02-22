@@ -36,13 +36,13 @@ const Gigs = () => {
         rating: 4.5,
         title: "Professional Logo Design",
         description: "I will create a unique and eye-catching logo for your business.",
-        Price: 50,
+        price: 50,
         skils: ["Graphic Design", "Logo Design", "Illustrator"],
         deliveryTime: 3
       })
     })
     const x = await res.json()
-    console.log(x);
+
 
   }
 
@@ -56,9 +56,13 @@ const Gigs = () => {
           <Gig key={index} gigDetails={gig} />
         ))}
 
-        <div className=" border-[1px] border-gray-300 bg-white w-[300px] flex flex-col justify-center items-center h-[295px] gap-5 " onClick={handleCreateGig}>
-          <FaPlusCircle className="text-6xl" />{" "}
-          <p className="font-medium">Create a new gig</p>
+        <div className="magic border-[1px] border-gray-300 bg-white w-[300px] flex flex-col justify-center items-center h-[295px] overflow-hidden gap-5 cursor-pointer relative" onClick={handleCreateGig}>
+
+          <div className="magic_hover absolute  bg-primary-color z-1"></div>
+          <p className="magic_text font-medium relative z-[2] flex flex-col justify-center items-center">
+            <FaPlusCircle className="text-6xl" />
+            Create a new gig
+          </p>
         </div>
       </div>
     </div>
