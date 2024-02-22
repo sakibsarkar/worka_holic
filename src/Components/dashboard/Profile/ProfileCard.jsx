@@ -1,21 +1,21 @@
-'use client'
+"use client";
 import Image from "next/image";
+import ModalBox from "@/Components/ui/ModalBox";
+import UpdateBio from "@/Components/Form/userInfo/UpdateBio";
+import UpdateDisplayName from "@/Components/Form/userInfo/UpdateDisplayName";
+import UpdateSellerTitle from "@/Components/Form/userInfo/UpdateSellerTitle";
+import { useContext, useState } from "react";
 import { FaEdit, FaSearchLocation } from "react-icons/fa";
 import { FaCamera, FaPen, FaUser } from "react-icons/fa6";
-import { formatDate } from "@/utilsFunction/dateConverter";
-import ModalBox from "@/Components/ui/ModalBox";
-import { useContext, useState } from "react";
-import UpdateDisplayName from "@/Components/Form/userInfo/UpdateDisplayName";
-import UpdateBio from "@/Components/Form/userInfo/UpdateBio";
 import { singleImage } from "@/config/uploadImage/UploadImage";
 import { UserContext } from "@/providers/UserProvider";
-import UpdateSellerTitle from "@/Components/Form/userInfo/UpdateSellerTitle";
+import { formatDate } from "@/utilsFunction/dateConverter";
 
 // import { getServerSession } from "next-auth";
 // import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 
 const ProfileCard = ({ userData = {} }) => {
-  const {setUser,user} = useContext(UserContext)
+  const { setUser, user } = useContext(UserContext)
   const [isOpen, setIsOpen] = useState(false)
   const [isBio, setIsBio] = useState(false)
   const [isTitle, setIsTitle] = useState(false)
@@ -45,42 +45,42 @@ const ProfileCard = ({ userData = {} }) => {
       headers:{
           "Content-type":"Application/json",
       },
-      body: JSON.stringify({avater:url})
+      body: JSON.stringify({ avater: url })
     })
     const data = await res.json();
-    
-    if(data.success){
-      setUser({...user, avater:url})
+
+    if (data.success) {
+      setUser({ ...user, avater: url })
     }
 
   }
 
 
-  const { languages, _id,bio, avater, name, userName,accountTitle, email, role, skills, country, responseTime, lastDeliveryTime, activeStatus, accountStatus, createdAt, updatedAt } = userData || {}
+  const { languages, _id, bio, avater, name, userName, accountTitle, email, role, skills, country, responseTime, lastDeliveryTime, activeStatus, accountStatus, createdAt, updatedAt } = userData || {}
 
   return (
     <div>
       {/* profile top card */}
       <div className="p-8 border-[1px] border-gray-300 w-[400px] mb-10 bg-white">
         <div className="flex flex-col items-center mb-5">
-            <div className=" relative">
-                <Image
-                className="rounded-full border"
-                src={avater || userImageUrl}
-                width={200}
-                height={200}
-                alt="user.png"
-              />
-              <label htmlFor="avater" className="w-[30px] h-[30px] flex items-center justify-center rounded-full bg-gray-50 border border-gray-100 cursor-pointer absolute right-0 top-7">
-                <FaCamera className="text-gray-500" />
-                <input  type='file'
-                    name='image'
-                    accept='image/*'
-                   onChange={handleAvater} 
-                   className="hidden" 
-                   id="avater"  />
-              </label>
-            </div>
+          <div className=" relative">
+            <Image
+              className="rounded-full border"
+              src={avater || userImageUrl}
+              width={200}
+              height={200}
+              alt="user.png"
+            />
+            <label htmlFor="avater" className="w-[30px] h-[30px] flex items-center justify-center rounded-full bg-gray-50 border border-gray-100 cursor-pointer absolute right-0 top-7">
+              <FaCamera className="text-gray-500" />
+              <input type='file'
+                name='image'
+                accept='image/*'
+                onChange={handleAvater}
+                className="hidden"
+                id="avater" />
+            </label>
+          </div>
           <h3 className="text-2xl font-semibold text-gray-800 mt-3 flex items-center gap-2">{name} <span onClick={() => setIsOpen(!isOpen)} className="cursor-pointer"><FaPen size={15} /></span> </h3>
           <ModalBox title={"Change Display name"} isOpen={isOpen} setIsOpen={setIsOpen}>
             <UpdateDisplayName isOpen={isOpen} setIsOpen={setIsOpen} />

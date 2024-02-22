@@ -1,6 +1,6 @@
 "use client";
-import Link from "next/link";
 import Gig from "./Gig";
+import Link from "next/link";
 import { useContext } from "react";
 import { FaPlusCircle } from "react-icons/fa";
 import { UserContext } from "@/providers/UserProvider";
@@ -29,29 +29,6 @@ const Gigs = () => {
 
   const { user } = useContext(UserContext)
 
-  const handleCreateGig = async () => {
-    const res = await fetch("/api/gigs?id=65d733f2328b45a461decb7a", {
-      method: "POST",
-      headers: {
-        "content-type": "application/json"
-      },
-      body: JSON.stringify({
-        userId: user._id,
-        image: "https://example.com/image1.jpg",
-        rating: 4.5,
-        status: "pending",
-        title: "Professional Logo Designer by sakib",
-        description: "I will create a unique and eye-catching logo for your business.",
-        price: 500,
-        skills: ["Graphic Designer", "Logo Design", "Illustrator"],
-        deliveryTime: 3
-      })
-    })
-    const x = await res.json()
-    console.log(x);
-
-
-  }
 
   return (
     <div className="flex-1 ">
@@ -63,14 +40,14 @@ const Gigs = () => {
           <Gig key={index} gigDetails={gig} />
         ))}
 
-        <div className="magic border-[1px] border-gray-300 bg-white w-[300px] flex flex-col justify-center items-center h-[295px] overflow-hidden gap-5 cursor-pointer relative" onClick={handleCreateGig}>
+        <Link href={"/createGig"} className="magic border-[1px] border-gray-300 bg-white w-[300px] flex flex-col justify-center items-center h-[295px] overflow-hidden gap-5 cursor-pointer relative" >
 
           <div className="magic_hover absolute  bg-primary-color z-1"></div>
           <p className="magic_text font-medium relative z-[2] flex flex-col justify-center items-center">
-            <Link href="/createGig"><FaPlusCircle className="text-6xl" /></Link>
+            <FaPlusCircle className="text-6xl" />
             Create a new gig
           </p>
-        </div>
+        </Link>
       </div>
     </div>
   );
