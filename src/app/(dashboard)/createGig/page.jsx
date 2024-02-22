@@ -87,7 +87,7 @@ const page = () => {
                 value={selectedSkill || "Skills"}
                 onClick={() => setShowSkill(!showSkill)}
                 readOnly
-                className="pl-1 w-full md:w-[325px] lg:w-[560px] rounded-md py-2 -mr-8 text-gray-500 cursor-pointer border-2 border-gray-200"
+                className="pl-1  w-full md:w-[325px] lg:w-[560px] rounded-md py-2 -mr-8 text-gray-500 cursor-pointer border-2 border-gray-200"
               />
               <IoIosArrowDown
                 onClick={() => setShowSkill(!showSkill)}
