@@ -1,6 +1,8 @@
 "use client";
 import Gig from "./Gig";
+import { useContext } from "react";
 import { FaPlusCircle } from "react-icons/fa";
+import { UserContext } from "@/providers/UserProvider";
 
 const Gigs = () => {
   const gigDetails = [
@@ -24,24 +26,28 @@ const Gigs = () => {
     },
   ];
 
+  const { user } = useContext(UserContext)
 
   const handleCreateGig = async () => {
-    const res = await fetch("/api/gigs", {
+    const res = await fetch("/api/gigs?id=65d733f2328b45a461decb7a", {
       method: "POST",
       headers: {
-        "Content-type": "Application/json",
+        "content-type": "application/json"
       },
       body: JSON.stringify({
+        userId: user._id,
         image: "https://example.com/image1.jpg",
         rating: 4.5,
-        title: "Professional Logo Design",
+        status: "pending",
+        title: "Professional Logo Designer by sakib",
         description: "I will create a unique and eye-catching logo for your business.",
-        price: 50,
-        skils: ["Graphic Design", "Logo Design", "Illustrator"],
+        price: 500,
+        skills: ["Graphic Designer", "Logo Design", "Illustrator"],
         deliveryTime: 3
       })
     })
     const x = await res.json()
+    console.log(x);
 
 
   }
