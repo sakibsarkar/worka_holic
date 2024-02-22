@@ -10,7 +10,7 @@ const NavBar = () => {
         <Image src={logo} width={200} alt="logo.png" />
         <div className="flex gap-6">
           <Link href={"/"}>Menu 1</Link>
-          <Link href={"/"}>Menu 2</Link>
+          <Link href={"/dashboard/orders"}>Orders</Link>
         </div>
       </div>
       <div className="flex gap-6 mr-5">
