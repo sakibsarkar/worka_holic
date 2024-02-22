@@ -7,6 +7,7 @@ const nextConfig = {
             {  hostname: 'civi.uxper.co' },
             {  hostname: 'fiverr-res.cloudinary.com' },
             {  hostname: 't4.ftcdn.net' },
+            {  hostname: 'img.freepik.com' },
         ],
     },
 };

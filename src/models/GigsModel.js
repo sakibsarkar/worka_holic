@@ -1,5 +1,9 @@
+<<<<<<< HEAD
 import { Types } from "mongoose";
 import { Schema, model, models } from "mongoose";
+=======
+import { Schema, Types, model, models } from "mongoose";
+>>>>>>> 148ccbbb7121d502ebb3034b30bec2fe0debb42b
 
 const gigsScema = new Schema({
     userId: {
@@ -9,6 +13,9 @@ const gigsScema = new Schema({
     image: {
         type: String,
         required: true
+    },
+    userId: {
+        type: Types.ObjectId
     },
     rating: {
         type: Number,
