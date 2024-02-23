@@ -26,7 +26,7 @@ const Navbar = () => {
       icon: <GoHomeFill />,
     },
     {
-      href: "/gigs",
+      href: "/gig",
       text: "Gigs",
       icon: <GrBusinessService />,
     },
@@ -65,18 +65,15 @@ const Navbar = () => {
         </div>
 
         <ul className="flex justify-center items-center gap-5 text-xl">
-          <li>
-            <Link href={"/"}>Home</Link>
-          </li>
-          <li>
-            <Link href={"/gig"}>Gigs</Link>
-          </li>
-          <li>
-            <Link href={"/"}>Pricing</Link>
-          </li>
-          <li>
-            <Link href={"/"}>About</Link>
-          </li>
+          {
+            routes.map((route, i) => <li key={i + "r"}>
+              <Link
+                href={route.href}
+                className="font-bold"
+                id={route.href === path ? "active" : ""}
+              >{route.text}</Link>
+            </li>)
+          }
         </ul>
 
         <div className="flex justify-between items-center gap-3">

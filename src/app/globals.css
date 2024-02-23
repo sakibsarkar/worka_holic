@@ -10,7 +10,8 @@
    .btn-primary {
       @apply bg-primary-color text-white hover:bg-[#025e47] transition-all
    }
-   .box{
+
+   .box {
       @apply container px-5 lg:px-0
    }
 }
@@ -18,6 +19,10 @@
 #activeRoute {
    background-color: #025e47;
    color: white;
+}
+
+#active {
+   color: #025e47;
 }
 
 #drawerOpen {
