@@ -1,17 +1,35 @@
-import Image from 'next/image';
-import React from 'react';
-import {  FaHouse, FaStar } from 'react-icons/fa6';
-import PackageCard from '@/Components/AllGigs/package/PackageCard';
+"use client";
+import Image from "next/image";
+import PackageCard from "@/Components/AllGigs/package/PackageCard";
+import React, { useEffect, useState } from "react";
+import { useParams } from "next/navigation";
+import { FaHouse, FaStar } from "react-icons/fa6";
+import { formatDate } from "@/utilsFunction/dateConverter";
 
 const GigDetails = () => {
+
+    const { slag } = useParams()
+    const [gigData, setGigData] = useState({})
+
+    useEffect(() => {
+        const handleGetData = async () => {
+            const res = await fetch(`/api/query/gigs?gig_id=${slag}`)
+            const data = await res.json()
+            setGigData(data)
+
+        }
+
+        handleGetData()
+    }, [slag])
+    const { _id, userId, image, rating, status, title, description, price, skills, deliveryTime } = gigData || {}
     return (
         <section className='mb-20'>
             <section className='mt-10 mb-8'>
                 <div className="box ">
                     <ul className='flex gap-2 items-center flex-wrap text-sm text-gray-500'>
-                        <li><a href="#" className='text-base font-normal text-gray-700'><FaHouse /> </a></li> / 
-                        <li><a href="#" className='text-base font-normal text-gray-700'>Graphic Design</a></li> / 
-                        <li><a href="#" className='text-base font-normal text-gray-700'>Web Design</a></li> / 
+                        <li><a href="#" className='text-base font-normal text-gray-700'><FaHouse /> </a></li> /
+                        <li><a href="#" className='text-base font-normal text-gray-700'>Graphic Design</a></li> /
+                        <li><a href="#" className='text-base font-normal text-gray-700'>Web Design</a></li> /
                         <li><a href="#" className='text-base font-normal text-gray-700'>UI/UX Design</a></li>
                     </ul>
                 </div>
@@ -20,17 +38,17 @@ const GigDetails = () => {
                 <div className="box">
                     <div className='grid lg:grid-cols-3 gap-10'>
                         <div className='lg:col-span-2'>
-                            <h1 className='text-2xl font-bold text-gray-800'>I will do professional UI UX design for websites, mobile apps or dashboards</h1>
+                            <h1 className='text-2xl font-bold text-gray-800'>{title}</h1>
                             <div className='flex gap-3 mt-3 mb-3'>
                                 <div>
                                     <div className='w-[40px] h-[40px] md:w-[65px] md:h-[65px] rounded-full'>
-                                        <Image className='w-[40px] h-[40px] md:w-[65px] md:h-[65px] rounded-full' src="https://fiverr-res.cloudinary.com/image/upload/t_profile_original,q_auto,f_auto/v1/attachments/profile/photo/903f5bd8a2cde66d26c5421aef08aa0d-1702839268928/32cb23e3-e6e9-42db-af4b-fd583da4e895.JPG" width={100} height={100} alt="" />
+                                        <Image className='w-[40px] h-[40px] object-cover md:w-[65px] md:h-[65px] rounded-full' src={userId?.avater} width={100} height={100} alt="" />
                                     </div>
                                 </div>
                                 <div>
-                                    <div className='flex gap-4 items-center'> <span className='text-lg font-bold'>Mohin Rana</span> <span className='text-xs hidden bg-gray-800 text-white md:inline-block px-2 py-1 rounded'>Work aholic choose</span> </div>
+                                    <div className='flex gap-4 items-center'> <span className='text-lg font-bold'>{userId?.name}</span> <span className='text-xs hidden bg-gray-800 text-white md:inline-block px-2 py-1 rounded'>Work aholic choose</span> </div>
                                     <div className='flex items-center gap-2'>
-                                        <div className='flex items-center gap-1'><FaStar /> <span>5.0</span></div>
+                                        <div className='flex items-center gap-1'><FaStar /> <span>{rating?.toFixed(2)}</span></div>
                                         | <div className='text-sm font-medium'> 2 Orders in Queue </div>
                                     </div>
                                 </div>
@@ -39,15 +57,17 @@ const GigDetails = () => {
                             {/* Gallary  */}
                             <div>
                                 <div>
-                                    <div className='w-full bg-gray-100'>
-                                        <Image className='mx-auto' src="https://fiverr-res.cloudinary.com/images/t_main1,q_auto,f_auto,q_auto,f_auto/gigs/347821489/original/3ac699d5ae33fc598f8d228e0672487e52a11cee/ui-ux-website-mobile-app-landing-page-dashboard-software-figma-design.jpg" width={600} height={400} alt="" />
+                                    <div className='w-full h-[450px] bg-gray-100 rounded-lg overflow-hidden'>
+                                        <Image className='mx-auto w-full h-full object-cover' src={image} width={600} height={400} alt="" />
                                     </div>
                                 </div>
                                 <div className='hidden lg:flex justify-center'>
                                     <div className='flex justify-center gap-2 items-center mt-3 '>
-                                        <Image className='w-[100px]' src="https://fiverr-res.cloudinary.com/images/t_main1,q_auto,f_auto,q_auto,f_auto/gigs/347821489/original/3ac699d5ae33fc598f8d228e0672487e52a11cee/ui-ux-website-mobile-app-landing-page-dashboard-software-figma-design.jpg" width={100} height={100} alt="" />
-                                        <Image className='w-[100px]' src="https://fiverr-res.cloudinary.com/images/t_main1,q_auto,f_auto,q_auto,f_auto/gigs/347821489/original/3ac699d5ae33fc598f8d228e0672487e52a11cee/ui-ux-website-mobile-app-landing-page-dashboard-software-figma-design.jpg" width={100} height={100} alt="" />
-                                        <Image className='w-[100px]' src="https://fiverr-res.cloudinary.com/images/t_main1,q_auto,f_auto,q_auto,f_auto/gigs/347821489/original/3ac699d5ae33fc598f8d228e0672487e52a11cee/ui-ux-website-mobile-app-landing-page-dashboard-software-figma-design.jpg" width={100} height={100} alt="" />
+                                        <Image className='w-[100px]' src={image} width={100} height={100} alt="" />
+                                        <Image className='w-[100px]' src={image} width={100} height={100} alt="" />
+                                        <Image className='w-[100px]' src={image} width={100} height={100} alt="" />
+
+
                                     </div>
                                 </div>
                             </div>
@@ -58,15 +78,23 @@ const GigDetails = () => {
                             <div className='mt-5'>
                                 <h2 className='text-xl font-semibold text-gray-700'>About Gig</h2>
                                 <div className='text-base text-gray-600 text-justify'>
-                                    With over many years of experience Lead UI/UX Designer, I specialize in enhancing the visual design of Mobile Apps and Websites. My meticulous process ensures timely and exceptional results:
-                                    Project Understanding:
-                                    - I deeply understand your project goals and requirements to align the designs with your objectives.
-                                    Audience Discovery:
-                                    - I identify your target audience, enabling me to tailor designs that resonate effectively with your users.
-                                    Wireframing:
-                                    - Strategic planning is executed through meticulous project wireframing, ensuring a thoughtful and organized approach.
-                                    Visual-Design:
-                                    - I craft stunning visual elements that elevate the aesthetics of your Webflow site, delivering a captivating user experience.
+                                    {description}
+                                </div>
+                            </div>
+
+                            {/* skills */}
+                            <div className="mt-5">
+                                <h2 className='text-xl font-semibold text-gray-700'>Skills</h2>
+                                <div className="flex justify-start items-center gap-[7px] mt-3">
+                                    {
+                                        skills?.map((skill, i) => <p
+                                            key={i}
+                                            className="bg-slate-200 w-fit px-[15px] py-[5px] rounded-full"
+
+                                        >
+                                            {skill}
+                                        </p>)
+                                    }
                                 </div>
                             </div>
 
@@ -76,12 +104,12 @@ const GigDetails = () => {
                                 <div className='md:flex gap-3 mt-3 mb-3'>
                                     <div>
                                         <div className='w-[65px] h-[65px] mx-auto md:ml-0 rounded-full'>
-                                            <Image className='w-[65px] h-[65px] rounded-full' src="https://fiverr-res.cloudinary.com/image/upload/t_profile_original,q_auto,f_auto/v1/attachments/profile/photo/903f5bd8a2cde66d26c5421aef08aa0d-1702839268928/32cb23e3-e6e9-42db-af4b-fd583da4e895.JPG" width={100} height={100} alt="" />
+                                            <Image className='w-[65px] h-[65px] rounded-full' src={userId?.avater} width={100} height={100} alt="" />
                                         </div>
                                     </div>
                                     <div className=''>
-                                        <div className='flex gap-4 items-center justify-center md:justify-start'> <span className='text-lg font-bold text-gray-800'>Mohin Rana</span> </div>
-                                        <div className='flex  gap-4 items-center justify-center md:justify-start'> <span className='text-base font-normal text-gray-700'>Web Development with React</span> </div>
+                                        <div className='flex gap-4 items-center justify-center md:justify-start'> <span className='text-lg font-bold text-gray-800'>{userId?.name}</span> </div>
+                                        <div className='flex  gap-4 items-center justify-center md:justify-start'> <span className='text-base font-normal text-gray-700'>{userId?.accountTitleaccountTitle}</span> </div>
                                         <div className='flex items-center gap-2 justify-center md:justify-start'>
                                             <div className='flex items-center gap-1'><FaStar /> <span>5.0</span></div>
                                         </div>
@@ -96,7 +124,7 @@ const GigDetails = () => {
                                             </div>
                                             <div>
                                                 <p className='text-gray-500 font-medium'>Member since</p>
-                                                <p className='text-gray-600 font-semibold'>Oct 2023</p>
+                                                <p className='text-gray-600 font-semibold'>{formatDate(userId?.createdAt)}</p>
                                             </div>
                                         </div>
                                         <div className='grid md:grid-cols-2 gap-2'>
@@ -118,17 +146,17 @@ const GigDetails = () => {
                                     </div>
                                     <hr />
                                     <div className='py-3'>
-                                        <p className='text-gray-600'>I am proficient UI/UX designer and a skilled social media marketer. I am deeply passionate about facilitating business growth online and possess a profound expertise in SEO techniques that significantly boost online visibility.</p>
+                                        <p className='text-gray-600'>{userId?.bio}</p>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div className='hidden lg:block lg:col-span-1'>
                             <div className=' sticky top-10 '>
-                                <PackageCard />
+                                <PackageCard gigData={gigData} />
                             </div>
 
-                           
+
                         </div>
                     </div>
                 </div>

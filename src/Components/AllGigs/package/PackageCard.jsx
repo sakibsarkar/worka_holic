@@ -1,19 +1,22 @@
-import React from 'react';
-import { BiCheck } from 'react-icons/bi';
-import { FaClock } from 'react-icons/fa6';
+import React from "react";
+import { BiCheck } from "react-icons/bi";
+import { FaClock } from "react-icons/fa6";
 
-const PackageCard = () => {
+const PackageCard = ({ gigData }) => {
+
+    const { title, price, deliveryTime } = gigData || {}
+
     return (
         <>
             <div className='border p-6'>
                 <div className='flex justify-between items-center text-gray-600 mb-3'>
-                    <span className='text-lg font-semibold'>UIUX Lite</span>
-                    <span className='text-xl font-bold'>$ 45</span>
+                    <span className='text-lg font-semibold'>Package</span>
+                    <span className='text-xl font-bold'>$ {price}</span>
                 </div>
-                <p className='text-base text-gray-500'>Website 1 page or 3 sections Mobile App 3 screens</p>
+                <p className='text-base text-gray-500'>{title}</p>
                 <div className='flex gap-2 items-center mt-3 text-gray-600'>
                     <FaClock />
-                    <span className='font-semibold'>6 Days Delivery</span>
+                    <span className='font-semibold'>{deliveryTime} Days Delivery</span>
                 </div>
                 <ul className='mt-2 flex flex-col gap-1'>
                     <li className='flex gap-2 items-center'>
@@ -22,7 +25,7 @@ const PackageCard = () => {
                     </li>
                     <li className='flex gap-2 items-center'>
                         <BiCheck />
-                        <span className='font-normal text-base'>  Responsive design</span>
+                        <span className='font-normal text-base'> Responsive design</span>
                     </li>
                     <li className='flex gap-2 items-center'>
                         <BiCheck />
@@ -44,7 +47,7 @@ const PackageCard = () => {
                 <button type={'button'} className={"w-full btn text-gray-800 bg-white border hover:bg-gray-600 rounded hover:text-white "}>
                     Contact Me
                 </button>
-            </div>   
+            </div>
         </>
     );
 };
