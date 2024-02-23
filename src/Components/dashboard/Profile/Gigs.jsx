@@ -1,7 +1,7 @@
 "use client";
 import Gig from "./Gig";
 import Link from "next/link";
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { FaPlusCircle } from "react-icons/fa";
 import { UserContext } from "@/providers/UserProvider";
 
@@ -27,6 +27,18 @@ const Gigs = () => {
     },
   ];
 
+  const [gigsData, setGigsData] = useState([])
+
+  useEffect(() => {
+    const getData = async () => {
+      const res = await fetch("/api/gigs")
+      const myGigs = await res.json()
+      setGigsData(myGigs)
+    }
+    getData()
+  }, [])
+
+
   const { user } = useContext(UserContext)
 
 
@@ -36,8 +48,8 @@ const Gigs = () => {
         <p className="font-semibold">Gigs</p>
       </div>
       <div className="flex flex-wrap gap-5">
-        {gigDetails.map((gig, index) => (
-          <Gig key={index} gigDetails={gig} />
+        {gigsData.map(gig => (
+          <Gig key={gig._id} gigDetails={gig} />
         ))}
 
         <Link href={"/createGig"} className="magic border-[1px] border-gray-300 bg-white w-[300px] flex flex-col justify-center items-center h-[295px] overflow-hidden gap-5 cursor-pointer relative" >
