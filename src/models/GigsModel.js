@@ -9,9 +9,6 @@ const gigsScema = new Schema({
         type: String,
         required: true
     },
-    userId: {
-        type: Types.ObjectId
-    },
     rating: {
         type: Number,
         default: 0
