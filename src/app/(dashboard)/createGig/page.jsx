@@ -14,21 +14,27 @@ const CreateGig = () => {
   //for skills
   const [selectedSkills, setSelectedSkills] = useState([]);
 
-
   // skill feild ref 
   const skillFeildRef = useRef(null)
 
+  // is focused
+  const [isfocused, setIsFocused] = useState(false)
 
-  // for adding skill after pressing "space bar"
+
+  // for adding skill after pressing "enter"
   const handleAddSkill = (e) => {
+    e.preventDefault();
     const keyCode = e.keyCode
     let value = e.target.value
     let skills = [...selectedSkills]
-    // spacebar key code = 32
-    if (keyCode == 32) {
+    
+    // enter button keycode = 13
+    if (keyCode == 13) {
       skills.push(value.trim())
       setSelectedSkills(skills)
       skillFeildRef.current.value = ""
+      e.stopPropagation();
+
     }
   }
 
@@ -40,9 +46,24 @@ const CreateGig = () => {
   }
 
 
+  // submit gig
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    
+    
+    // preventing submiting form from the skill input feild
+    if (isfocused) {
+      return
+    }
+
+
+  }
+
+
+
   return (
     <div>
-      <form className="w-11/12 mx-auto border-2 border-gray-200 shadow-sm bg-white min-h-[600px] p-4">
+      <form className="w-11/12 mx-auto border-2 border-gray-200 shadow-sm bg-white min-h-[600px] p-4" onSubmit={handleSubmit}>
         <div className="mt-8">
           <input
             type="text"
@@ -71,6 +92,8 @@ const CreateGig = () => {
               placeholder="Skills for this gig"
               className="pl-1  w-full  rounded-md py-2 -mr-8 text-gray-500 cursor-pointer border-2 border-gray-200"
               onKeyUp={handleAddSkill}
+              onFocus={() => setIsFocused(true)}
+              onBlur={() => setIsFocused(false)}
               ref={skillFeildRef}
             />
           </div>
