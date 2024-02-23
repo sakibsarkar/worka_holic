@@ -33,17 +33,17 @@ const ProfileCard = ({ userData = {} }) => {
     from: "Dhaka",
     accountCreatedAt: "May 2014",
   };
-  const userImageUrl ="https://t4.ftcdn.net/jpg/05/42/36/11/360_F_542361185_VFRJWpR2FH5OiAEVveWO7oZnfSccZfD3.jpg";
+  const userImageUrl = "https://t4.ftcdn.net/jpg/05/42/36/11/360_F_542361185_VFRJWpR2FH5OiAEVveWO7oZnfSccZfD3.jpg";
 
 
   const handleAvater = async (e) => {
     const img = e.target.files[0];
     const url = await singleImage(img)
 
-    const res = await fetch(`/api/user`,{
-      method:"PATCH",
-      headers:{
-          "Content-type":"Application/json",
+    const res = await fetch(`/api/user`, {
+      method: "PATCH",
+      headers: {
+        "Content-type": "Application/json",
       },
       body: JSON.stringify({ avater: url })
     })
@@ -63,9 +63,9 @@ const ProfileCard = ({ userData = {} }) => {
       {/* profile top card */}
       <div className="p-8 border-[1px] border-gray-300 w-[400px] mb-10 bg-white">
         <div className="flex flex-col items-center mb-5">
-          <div className=" relative">
+          <div className=" h-[194px] w-[194px] object-cover rounded-full relative">
             <Image
-              className="rounded-full border"
+              className="rounded-full w-full h-full object-cover border"
               src={avater || userImageUrl}
               width={200}
               height={200}
@@ -81,7 +81,7 @@ const ProfileCard = ({ userData = {} }) => {
                 id="avater" />
             </label>
           </div>
-          <h3 className="text-2xl font-semibold text-gray-800 mt-3 flex items-center gap-2">{name} <span onClick={() => setIsOpen(!isOpen)} className="cursor-pointer"><FaPen size={15} /></span> </h3>
+          <h3 className="cursor-pointer hover:underline text-2xl font-semibold text-gray-800 mt-3 flex items-center gap-2" onClick={() => setIsOpen(!isOpen)}>{name} <span className="cursor-pointer"><FaPen size={15} /></span> </h3>
           <ModalBox title={"Change Display name"} isOpen={isOpen} setIsOpen={setIsOpen}>
             <UpdateDisplayName isOpen={isOpen} setIsOpen={setIsOpen} />
           </ModalBox>
@@ -89,7 +89,8 @@ const ProfileCard = ({ userData = {} }) => {
             <UpdateSellerTitle isOpen={isTitle} setIsOpen={setIsTitle} />
           </ModalBox>
           <p>@{userName}</p>
-          <p className="flex items-center gap-2">{accountTitle} <span onClick={() => setIsTitle(!isTitle)} className="cursor-pointer text-gray-600"><FaPen size={10} /></span> </p>
+          <p className="flex items-center gap-2 cursor-pointer hover:underline"
+            onClick={() => setIsTitle(!isTitle)}>{accountTitle || "Add your title"} <span className="cursor-pointer text-gray-600"><FaPen size={10} /></span> </p>
         </div>
         <hr />
         <div className="pt-5">
