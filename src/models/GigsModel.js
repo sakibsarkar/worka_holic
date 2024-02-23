@@ -14,10 +14,11 @@ const gigsScema = new Schema({
     },
     rating: {
         type: Number,
+        default: 0
     },
     status: {
         type: String,
-        default: "Pending"
+        default: "pending"
     },
     title: {
         type: String,
