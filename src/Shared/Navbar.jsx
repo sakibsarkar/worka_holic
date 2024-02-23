@@ -52,7 +52,6 @@ const Navbar = () => {
     setShow(false);
     document.body.classList.remove("noScroll");
   };
-  console.log(user);
   // const handleLogout = async () => {
   //     await signOut();
   //     // setUser(null)

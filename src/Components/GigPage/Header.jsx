@@ -1,6 +1,33 @@
+"use client";
+import { useRef } from "react";
 import { FaSearch } from "react-icons/fa";
 
-const Header = () => {
+const category = ["Web developer", "Devops Engineer", "Full stack developer"];
+
+const Header = ({ setSearchValue, setCategory, setRating, setPriceRange }) => {
+
+  // change search value
+  const inputRef = useRef(null)
+  // search from enter button
+  const hanldeSearch = (e) => {
+    const keyCode = e.keyCode
+    const value = inputRef.current.value
+    if (!value) return
+    if (keyCode == 13) {
+      setSearchValue(value)
+      inputRef.current.blur()
+    }
+  }
+
+  // search by search btn
+  const handleButtonSearch = () => {
+    const value = inputRef.current.value
+    if (!value) return
+    setSearchValue(value)
+    inputRef.current.blur()
+
+  }
+
   return (
     <div className="flex justify-between max-w-7xl mx-auto pt-16 ">
       <div>
@@ -8,37 +35,41 @@ const Header = () => {
           className="rounded-r-full rounded-l-full absolute "
           type="text"
           name="search"
+          onKeyUp={hanldeSearch}
           placeholder="Search"
-          id=""
+          ref={inputRef}
         />
-        <button>
+        <button onClick={handleButtonSearch}>
           <FaSearch className="relative left-52 top-3" />
         </button>
       </div>
       <div className="flex flex-col lg:flex-row gap-4">
-        <select defaultValue={"category"} name="category">
-          <option disabled value={"category"}>
-            Category
+        <select onChange={(e) => setCategory(e.target.value)}>
+          <option value={""}>
+            All Category
           </option>
-          <option value="category1">Category 1</option>
-          <option value="category2">Category 2</option>
-          <option value="category3">Category 3</option>
+
+          {
+            category?.map((cat, i) => <option value={cat} key={i}>{cat}</option>)
+          }
         </select>
-        <select defaultValue={"ratings"} name="ratings">
-          <option disabled value={"ratings"}>
-            Ratings
+        <select onChange={(e) => setRating(e.target.value)} >
+          <option value={""}>
+            All Ratings
           </option>
-          <option value="Ratings1">Ratings 1</option>
-          <option value="Ratings2">Ratings 2</option>
-          <option value="Ratings3">Ratings 3</option>
+          <option value="1">1 Star</option>
+          <option value="2">2 Star</option>
+          <option value="3">3 Star</option>
+          <option value="4">4 Star</option>
+          <option value="5">5 Star</option>
         </select>
-        <select defaultValue={"price"} name="price">
-          <option disabled value={"price"}>
-            price
+        <select defaultValue={"price"} name="price" onChange={(e) => setPriceRange(e.target.value)}>
+          <option value={""}>
+            All price
           </option>
-          <option value="price1">price 1</option>
-          <option value="price2">price 2</option>
-          <option value="price3">price 3</option>
+          <option value="0@150">Low - $0 - 150</option>
+          <option value="150@300">Mid - $150-  300</option>
+          <option value="300@e">High - $300+</option>
         </select>
       </div>
     </div>
