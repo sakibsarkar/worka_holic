@@ -52,7 +52,7 @@ const Gigs = () => {
           <Gig key={gig._id} gigDetails={gig} />
         ))}
 
-        <Link href={"/createGig"} className="magic border-[1px] border-gray-300 bg-white w-[300px] flex flex-col justify-center items-center h-[295px] overflow-hidden gap-5 cursor-pointer relative" >
+        <Link href={"/createGig"} className="magic border-[1px] border-gray-300 bg-white w-[300px] flex flex-col justify-center items-center h-[318px] overflow-hidden gap-5 cursor-pointer relative" >
 
           <div className="magic_hover absolute  bg-primary-color z-1"></div>
           <p className="magic_text font-medium relative z-[2] flex flex-col justify-center items-center">

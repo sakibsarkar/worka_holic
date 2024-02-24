@@ -1,43 +1,43 @@
-'use client';
-import React, { useContext } from 'react';
-import PrimaryButton from '../buttons/PrimaryButton';
-import { UserContext } from '@/providers/UserProvider';
-import { useRouter } from 'next/navigation';
-import { calculateNextDate } from '@/utilsFunction/dateConverter';
+"use client";
+import PrimaryButton from "../buttons/PrimaryButton";
+import React, { useContext } from "react";
+import { useRouter } from "next/navigation";
+import { UserContext } from "@/providers/UserProvider";
+import { calculateNextDate } from "@/utilsFunction/dateConverter";
 
-const OrderForm = ({setIsOpen,gigData}) => {
-    const {user} = useContext(UserContext);
+const OrderForm = ({ setIsOpen, gigData }) => {
+    const { user } = useContext(UserContext);
     const router = useRouter();
 
-    const {userId,_id,deliveryTime} = gigData || {};
+    const { userId, _id, deliveryTime: gigDelivery } = gigData || {};
 
 
     const handleSubmit = async (e) => {
         e.preventDefault()
-        if(!user?._id){
+        if (!user?._id) {
             router.push('/login');
             return
         }
         const orderNote = e.target.orderNote.value;
-        const {deliveryTime} = calculateNextDate(deliveryTime);
+        const { deliveryTime } = calculateNextDate(gigDelivery);
 
         try {
             const res = await fetch(`/api/order`, {
-                method:"POST",
+                method: "POST",
                 headers: {
-                    "Content-type":"Application/json",
+                    "Content-type": "Application/json",
                 },
                 body: JSON.stringify({
-                    ownerId:userId?._id,
-                    clientId : user?._id,
+                    ownerId: userId?._id,
+                    clientId: user?._id,
                     orderNote,
-                    gigId:_id,
+                    gigId: _id,
                     deliveryStatus: "Pending",
                     deliveryTime,
-                }) 
+                })
             })
             const data = await res.json();
-            if(data.success){
+            if (data.success) {
                 setIsOpen(false)
                 console.log(data);
             }
