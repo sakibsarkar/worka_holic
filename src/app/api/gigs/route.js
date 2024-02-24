@@ -8,7 +8,7 @@ export const GET = async (req) => {
     const session = await getServerSession(authOptions)
     const userId = session.user.id
     const status = req.nextUrl.searchParams.get("status")
-    
+
     let query = {
         userId: userId
     }
@@ -31,7 +31,7 @@ export const POST = async (req) => {
         console.log(body);
         await Gig.create(body)
         return NextResponse.json({ inserted: true, error: false })
-    }catch (err) {
+    } catch (err) {
         return NextResponse({ inserted: false, error: true })
     }
 }
@@ -42,12 +42,12 @@ export const DELETE = async (req) => {
     try {
         ConnectDB()
         const session = await getServerSession(authOptions)
-        const gig_id = req.nextUrl.searchParams.get("id")
+        const gig_id = req.nextUrl.searchParams.get("gig_id")
         const userId = session.user.id;
 
         let query = {
-            userId,
-            _id: gig_id
+            _id: gig_id,
+            userId: userId,
         }
 
         await Gig.deleteOne(query)
@@ -66,18 +66,17 @@ export const PUT = async (req) => {
     try {
         ConnectDB()
 
-        const { image, rating, status, title, description, price, skills, deliveryTime } = await req.json()
-        const gig_id = req.nextUrl.searchParams.get("id")
-
+        const { image, title, description, price, skills, deliveryTime, category } = await req.json()
+        const gig_id = req.nextUrl.searchParams.get("gig_id")
+        console.log(gig_id);
         const update = {
             image,
-            rating,
-            status,
             title,
             description,
             price,
             skills,
             deliveryTime,
+            category
         }
 
         const find = { _id: gig_id }

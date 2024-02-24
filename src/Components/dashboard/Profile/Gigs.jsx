@@ -28,7 +28,7 @@ const Gigs = () => {
   ];
 
   const [gigsData, setGigsData] = useState([])
-
+  const [refetch, setRefetch] = useState(false)
   useEffect(() => {
     const getData = async () => {
       const res = await fetch("/api/gigs")
@@ -36,7 +36,7 @@ const Gigs = () => {
       setGigsData(myGigs)
     }
     getData()
-  }, [])
+  }, [refetch])
 
 
   const { user } = useContext(UserContext)
@@ -49,10 +49,10 @@ const Gigs = () => {
       </div>
       <div className="flex flex-wrap gap-5">
         {gigsData.map(gig => (
-          <Gig key={gig._id} gigDetails={gig} />
+          <Gig key={gig._id} gigDetails={gig} setRefetch={setRefetch} refetch={refetch} />
         ))}
 
-        <Link href={"/createGig"} className="magic border-[1px] border-gray-300 bg-white w-[300px] flex flex-col justify-center items-center h-[295px] overflow-hidden gap-5 cursor-pointer relative" >
+        <Link href={"/createGig"} className="magic border-[1px] border-gray-300 bg-white w-[300px] flex flex-col justify-center items-center h-[318px] overflow-hidden gap-5 cursor-pointer relative" >
 
           <div className="magic_hover absolute  bg-primary-color z-1"></div>
           <p className="magic_text font-medium relative z-[2] flex flex-col justify-center items-center">
