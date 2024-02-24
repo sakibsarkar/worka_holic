@@ -110,8 +110,8 @@ const CreateGig = () => {
         description: description,
         price: price,
         skills: selectedSkills,
-        deliveryTime: selectedDays
-
+        deliveryTime: Number(selectedDays),
+        category:selectedCategory,
       }
 
 
@@ -244,7 +244,7 @@ const CreateGig = () => {
             />
           </div>
           <div>
-            <button className="btn rounded-md mt-4 lg:mt-0 bg-black text-white" >
+            <button type="submit" className="btn rounded-md mt-4 lg:mt-0 bg-black text-white" >
               Save & Continue
             </button>
           </div>

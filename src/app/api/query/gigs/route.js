@@ -6,11 +6,11 @@ export const GET = async (req) => {
     ConnectDB()
 
     // query params
-    const id = req.nextUrl.searchParams.get("gig_id")
-    const search = req.nextUrl.searchParams.get("search")
-    const category = req.nextUrl.searchParams.get("category")
-    const rating = req.nextUrl.searchParams.get("rating")
-    const priceRange = req.nextUrl.searchParams.get("priceRange")
+    const id = req.nextUrl.searchParams.get("gig_id") || ''
+    const search = req.nextUrl.searchParams.get("search") || ''
+    const category = req.nextUrl.searchParams.get("category") || ''
+    const rating = req.nextUrl.searchParams.get("rating") || ''
+    const priceRange = req.nextUrl.searchParams.get("priceRange") || ''
 
 
     const rangeArr = priceRange.split("@")

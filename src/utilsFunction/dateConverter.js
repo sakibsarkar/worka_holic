@@ -5,3 +5,17 @@ export function formatDate(inputDate) {
     const year = date.getFullYear();
     return `${month} ${year}`;
 }
+
+
+export function calculateNextDate(lastTime){
+    const currentDate = new Date();
+
+    const calculateTime = new Date(currentDate);
+    calculateTime.setDate(currentDate.getDate()+lastTime)
+
+    const today = currentDate.toLocaleDateString();
+    const deliveryTime = calculateTime.toLocaleDateString();
+
+    return {today, deliveryTime}
+     
+}
