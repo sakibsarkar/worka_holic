@@ -9,7 +9,11 @@ const OrderForm = ({ setIsOpen, gigData }) => {
     const { user } = useContext(UserContext);
     const router = useRouter();
 
+<<<<<<< HEAD
+    const {userId,_id,deliveryTime:gigDelivery} = gigData || {};
+=======
     const { userId, _id, deliveryTime: gigDelivery } = gigData || {};
+>>>>>>> 1046de0312ee4bf4716118360e2e87b21e4a3053
 
 
     const handleSubmit = async (e) => {
@@ -18,8 +22,13 @@ const OrderForm = ({ setIsOpen, gigData }) => {
             router.push('/login');
             return
         }
+        
         const orderNote = e.target.orderNote.value;
+<<<<<<< HEAD
+        const {deliveryTime} = calculateNextDate(gigDelivery);
+=======
         const { deliveryTime } = calculateNextDate(gigDelivery);
+>>>>>>> 1046de0312ee4bf4716118360e2e87b21e4a3053
 
         try {
             const res = await fetch(`/api/order`, {
