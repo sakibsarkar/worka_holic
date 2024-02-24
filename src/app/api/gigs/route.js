@@ -66,18 +66,17 @@ export const PUT = async (req) => {
     try {
         ConnectDB()
 
-        const { image, rating, status, title, description, price, skills, deliveryTime } = await req.json()
-        const gig_id = req.nextUrl.searchParams.get("id")
-
+        const { image, title, description, price, skills, deliveryTime, category } = await req.json()
+        const gig_id = req.nextUrl.searchParams.get("gig_id")
+        console.log(gig_id);
         const update = {
             image,
-            rating,
-            status,
             title,
             description,
             price,
             skills,
             deliveryTime,
+            category
         }
 
         const find = { _id: gig_id }
