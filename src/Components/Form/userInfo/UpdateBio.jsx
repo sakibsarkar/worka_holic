@@ -27,7 +27,7 @@ const UpdateBio = ({setIsOpen}) => {
     return (
         <form onSubmit={handleUpdate} className='mt-4 flex flex-col gap-5'>
             <div>
-            <label htmlFor="" className='text-sm text-gray-500 mb-2 inline-block'>Bio</label>
+                <label htmlFor="" className='text-sm text-gray-500 mb-2 inline-block'>Bio</label>
                 <textarea name="bio" id="" cols="30" defaultValue={user?.bio || ""} rows="3" className='px-3 py-2 w-full focus-visible:outline-none border border-gray-200 rounded' placeholder='Bio...'></textarea>
             </div>
             <PrimaryButton type={'submit'} css={' rounded'}>

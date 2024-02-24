@@ -1,10 +1,14 @@
-import React from "react";
+'use client'
+import OrderForm from "@/Components/Form/OrderForm";
+import ModalBox from "@/Components/ui/ModalBox";
+import React, { useState } from "react";
 import { BiCheck } from "react-icons/bi";
 import { FaClock } from "react-icons/fa6";
 
 const PackageCard = ({ gigData }) => {
-
+    const [isOpen, setIsOpen] = useState(false)
     const { title, price, deliveryTime } = gigData || {}
+
 
     return (
         <>
@@ -37,7 +41,7 @@ const PackageCard = ({ gigData }) => {
                     </li>
                 </ul>
                 <div className='mt-3 '>
-                    <button type={'button'} className={"w-full btn hover:bg-gray-900 rounded text-white bg-black"}>
+                    <button onClick={() => setIsOpen(!isOpen)} type={'button'} className={"w-full btn hover:bg-gray-900 rounded text-white bg-black"}>
                         Continue
                     </button>
                 </div>
@@ -48,6 +52,10 @@ const PackageCard = ({ gigData }) => {
                     Contact Me
                 </button>
             </div>
+
+            <ModalBox title="Order now for this Gig" isOpen={isOpen} setIsOpen={setIsOpen} >
+                <OrderForm setIsOpen={setIsOpen} gigData={gigData}  />
+            </ModalBox>
         </>
     );
 };

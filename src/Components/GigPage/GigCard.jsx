@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import { FaStar } from "react-icons/fa";
 
 const GigCard = ({ gig }) => {
@@ -38,7 +39,7 @@ const GigCard = ({ gig }) => {
         </div>
         <div className="flex justify-between items-center">
           <p className="font-bold text-[18px]">${price}</p>
-          <button className="btn btn-primary w-36">See Details</button>
+          <Link href={`/gig/${_id}`} className="btn btn-primary w-36">See Details</Link>
         </div>
       </div>
     </div>

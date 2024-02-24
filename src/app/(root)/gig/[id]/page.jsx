@@ -1,28 +1,19 @@
-"use client";
+
 import Image from "next/image";
 import PackageCard from "@/Components/AllGigs/package/PackageCard";
-import React, { useEffect, useState } from "react";
-import { useParams } from "next/navigation";
+
 import { FaHouse, FaStar } from "react-icons/fa6";
-import { formatDate } from "@/utilsFunction/dateConverter";
+// import { formatDate } from "@/utilsFunction/dateConverter";
 
-const GigDetails = () => {
+const GigDetails = async ({params}) => {
 
-    const { slag } = useParams()
-    const [gigData, setGigData] = useState({})
+    const id = params?.id;
+    const res = await fetch(`http://localhost:3000/api/query/gigs?gig_id=${id}`)
+    const gigData = await res.json()
 
-    useEffect(() => {
-        const handleGetData = async () => {
-            const res = await fetch(`/api/query/gigs?gig_id=${slag}`)
-            const data = await res.json()
-            setGigData(data)
-
-        }
-
-        handleGetData()
-    }, [slag])
-    const { _id, userId, image, rating, status, title, description, price, skills, deliveryTime } = gigData || {}
+    const { _id, userId, image, rating, status, title, description, price, skills, deliveryTime } = gigData[0] || {}
     return (
+      
         <section className='mb-20'>
             <section className='mt-10 mb-8'>
                 <div className="box ">
@@ -124,7 +115,7 @@ const GigDetails = () => {
                                             </div>
                                             <div>
                                                 <p className='text-gray-500 font-medium'>Member since</p>
-                                                <p className='text-gray-600 font-semibold'>{formatDate(userId?.createdAt)}</p>
+                                                {/* <p className='text-gray-600 font-semibold'>{formatDate(userId?.createdAt)}</p> */}
                                             </div>
                                         </div>
                                         <div className='grid md:grid-cols-2 gap-2'>
@@ -153,7 +144,7 @@ const GigDetails = () => {
                         </div>
                         <div className='hidden lg:block lg:col-span-1'>
                             <div className=' sticky top-10 '>
-                                <PackageCard gigData={gigData} />
+                                <PackageCard gigData={gigData[0]}  />
                             </div>
 
 
