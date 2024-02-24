@@ -23,6 +23,9 @@ const orderScema = new Schema({
         type: String,
         default: "Pending" // Pending, Cancel, Delivery, Accept
     },
+    documentOrder: {
+        type: String,
+    },
 },{timestamps:true})
 
 const Order = models.Order || model("Order", orderScema);

@@ -45,7 +45,7 @@ const AllGigs = () => {
 
           <div className="my-10 min-h-[80vh] max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
             {data?.map((gig) => (
-              <GigCard key={gig.id} gig={gig} />
+              <GigCard key={gig?._id} gig={gig} />
             ))}
           </div>
 

@@ -14,7 +14,7 @@ const GigCard = ({ gig }) => {
             width={300}
             height={250}
             src={image}
-            alt=""
+            alt="asdf"
           />
         </div>
         <div className="flex gap-5">
@@ -24,7 +24,7 @@ const GigCard = ({ gig }) => {
               width={50}
               height={30}
               src={userId?.avater}
-              alt=""
+              alt="Avater"
             />
           </div>
           <div>
