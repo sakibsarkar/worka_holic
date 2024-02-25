@@ -1,4 +1,5 @@
 "use client";
+import AddLanguage from "@/Components/Form/userInfo/AddLanguage";
 import AddSkill from "@/Components/Form/userInfo/AddSkill";
 import Image from "next/image";
 import ModalBox from "@/Components/ui/ModalBox";
@@ -21,6 +22,7 @@ const ProfileCard = ({ userData = {} }) => {
   const [isBio, setIsBio] = useState(false)
   const [isTitle, setIsTitle] = useState(false)
   const [isSkill, setIsSkill] = useState(false)
+  const [isLanguage, setIslanguage] = useState(false)
 
 
   const userDetails = {
@@ -59,7 +61,6 @@ const ProfileCard = ({ userData = {} }) => {
 
 
   const { languages, _id, bio, avater, name, userName, accountTitle, email, role, skills, country, responseTime, lastDeliveryTime, activeStatus, accountStatus, createdAt, updatedAt } = userData || {}
-
   return (
     <div>
       {/* profile top card */}
@@ -153,10 +154,13 @@ const ProfileCard = ({ userData = {} }) => {
         <div>
           <div className="flex justify-between mb-4">
             <p className="font-semibold">Language</p>{" "}
-            <p className="text-sm">Add new</p>
+            <p className="text-sm cursor-pointer" onClick={() => setIslanguage(true)}>Add new</p>
+            <ModalBox title={"Add Language"} isOpen={isLanguage} setIsOpen={setIslanguage}>
+              <AddLanguage setIsOpen={setIslanguage} oldLang={languages?.types} />
+            </ModalBox>
           </div>
           <div className="flex flex-wrap gap-4">
-            {languages?.type?.map((language, index) => (
+            {languages?.types?.map((language, index) => (
               <span key={index} className="bg-gray-100 px-3 py-1 rounded-full">
                 {language}
               </span>
