@@ -40,3 +40,7 @@
 .noScroll {
    overflow-y: hidden !important;
 }
+
+.boxShadow {
+   box-shadow: 0 2px 16.8px 3.2px #00264214;
+}
