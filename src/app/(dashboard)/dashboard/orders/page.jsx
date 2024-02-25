@@ -6,6 +6,7 @@ import React, { useEffect, useState } from 'react';
 const OrderPage = () => {
     const [updateEffect, setUpdateEffect] = useState(false)
     const [orders, setOrders] = useState([]);
+    const [isTab, setIsTab] = useState('all');
 
     // Cancel order
     const handleCancelOrder = async (id) => {
@@ -27,7 +28,6 @@ const OrderPage = () => {
 
     // Accept order
     const handleAccept = async (id) => {
-
         const res = await fetch(`/api/order?id=${id}`,{
             method:"PATCH",
             headers:{
@@ -42,26 +42,30 @@ const OrderPage = () => {
             setUpdateEffect(!updateEffect)
         }
     }
+
+
     useEffect(() => {
         const getOrders = async () => {
-            const res = await fetch(`/api/order`,{
+            const res = await fetch(`/api/order?status=${isTab}`,{
                 method:"GET",
             })
             const {orders} = await res.json();
             setOrders(orders);
         }
         getOrders();
-    },[updateEffect])
+    },[updateEffect,isTab])
     return (
         <div>
             <div className='box '>
                 <div className='sm:flex items-center justify-between mb-5'>
                     <ul className='flex gap-3 items-center '>
-                        <li><Link className='text-sm hover:text-gray-900 uppercase font-medium text-gray-500' href="/">Pending</Link></li>
-                        <li><Link className='text-sm hover:text-gray-900 uppercase font-medium text-gray-500' href="/">Cancel</Link></li>
-                        <li><Link className='text-sm hover:text-gray-900 uppercase font-medium text-gray-500' href="/">Success</Link></li>
+                        <li><button onClick={() => setIsTab("all")} className={`text-sm hover:text-gray-900 uppercase font-medium  ${isTab == 'all' ? 'text-gray-900':"text-gray-500"} `}>All</button></li>
+                        <li><button onClick={() => setIsTab("Pending")} className={`text-sm hover:text-gray-900 uppercase font-medium  ${isTab == 'Pending' ? 'text-gray-900':"text-gray-500"} `}>Pending</button></li>
+                        <li><button onClick={() => setIsTab("Accept")} className={`text-sm hover:text-gray-900 uppercase font-medium  ${isTab == 'Accept' ? 'text-gray-900':"text-gray-500"} `}>Accepted</button></li>
+                        <li><button onClick={() => setIsTab("Cancel")} className={`text-sm hover:text-gray-900 uppercase font-medium  ${isTab == 'Cancel' ? 'text-gray-900':"text-gray-500"} `}>Cancel</button></li>
+                        <li><button onClick={() => setIsTab("Delivery")} className={`text-sm hover:text-gray-900 uppercase font-medium  ${isTab == 'Delivery' ? 'text-gray-900':"text-gray-500"} `}>Success</button></li>
                     </ul>
-                    <Link href={'/'} className='btn btn-primary'>
+                    <Link href={'/createGig'} className='btn btn-primary'>
                         Create new Gig
                     </Link>
                 </div>
