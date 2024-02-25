@@ -39,11 +39,19 @@ const OrderRows = ({order,handleCancelOrder,handleAccept,setUpdateEffect,updateE
                   
                 </td>
                 <td className='px-3 py-2'>
-                    <div className=' flex flex-col gap-2'>{
-                        deliveryStatus == "Pending" ? <> <button onClick={() => handleCancelOrder(_id)} className='font-medium bg-red-600 rounded px-2 py-1 text-xs text-white '> Cancel</button></> 
-                        : deliveryStatus != "Pending" && deliveryStatus != "Cancel" ?  <><button onClick={() => setIsOpen(!isOpen)} className='font-medium bg-green-600 rounded px-2 py-1 text-xs text-white '> Delivery now </button></>
-                        : <>Cancel</>
-                    }
+                    <div className=' flex flex-col gap-2'>
+                        {
+                            deliveryStatus == "Pending" && <> <button onClick={() => handleCancelOrder(_id)} className='font-medium bg-red-600 rounded px-2 py-1 text-xs text-white '> Cancel now</button></>
+                        }
+                        {
+                            deliveryStatus == "Cancel" && <> <button className='font-medium text-red-600 rounded px-2 py-1 text-xs  '> Cancel</button></>
+                        }
+                        {
+                            deliveryStatus == "Accept" && <> <button onClick={() => setIsOpen(!isOpen)} className='font-medium bg-green-600 rounded px-2 py-1 text-xs text-white '> Delivery</button></>
+                        }
+                        {
+                            deliveryStatus == "Delivery" && <> <button  className='font-medium text-green-600 rounded px-2 py-1 text-xs '> Complated</button></>
+                        }                   
                     </div>
                   
                   
