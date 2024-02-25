@@ -41,11 +41,11 @@ const Contact = () => {
                     Visit Us
             </button>
             <div className="mt-6 mb-4">
-                <div className="flex gap-1">
+                <div className="flex gap-1 mb-2">
                 <FiPhone className="text-xl text-green-700"></FiPhone>
                 <p>+80123456789</p>
                 </div>
-                <div className="flex gap-1">
+                <div className="flex gap-1 mb-2">
                 <IoLocationOutline className="text-xl text-green-700"></IoLocationOutline>
                 <p>Mirpur-1, section-1 Block c Dhaka</p>
                 </div>
