@@ -16,7 +16,6 @@ const Header = ({ setCategory, setRating, setPriceRange, searchValue }) => {
   const hanldeSearch = (e) => {
     const keyCode = e.keyCode
     const value = inputRef.current.value
-    if (!value) return
     if (keyCode == 13) {
       router.push(`/gig?search=${value}`)
       inputRef.current.blur()
@@ -26,7 +25,6 @@ const Header = ({ setCategory, setRating, setPriceRange, searchValue }) => {
   // search by search btn
   const handleButtonSearch = () => {
     const value = inputRef.current.value
-    if (!value) return
     router.push(`/gig?search=${value}`)
     inputRef.current.blur()
 

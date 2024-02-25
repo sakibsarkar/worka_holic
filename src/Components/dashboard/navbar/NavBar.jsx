@@ -15,10 +15,11 @@ const NavBar = () => {
   return (
     <div className="flex justify-between text-xl max-w-7xl  mx-auto py-5 items-center font-semibold">
       <div className="flex items-center gap-10">
-        <Image src={logo} width={200} alt="logo.png" />
+        <Link href="/"><Image src={logo} width={200} alt="logo.png" /></Link>
         <div className="flex gap-6">
-          <Link href={"/"}>Menu 1</Link>
+          <Link href={"/profile"}>Profile</Link>
           <Link href={"/dashboard/orders"}>Orders</Link>
+          <Link href={"/"}>Home</Link>
         </div>
       </div>
       <div className="flex justify-end gap-6 mr-5 relative w-[170px] cursor-pointer" onClick={() => setShow(!show)}>

@@ -1,67 +1,78 @@
-'use client';
-import OrderRows from '@/Components/Row/OrderRows';
-import Link from 'next/link';
-import React, { useEffect, useState } from 'react';
+"use client";
+import Link from "next/link";
+import OrderRows from "@/Components/Row/OrderRows";
+import React, { useEffect, useState } from "react";
 
 const OrderPage = () => {
     const [updateEffect, setUpdateEffect] = useState(false)
     const [orders, setOrders] = useState([]);
+    const [isTab, setIsTab] = useState('all');
+
+    const orderStatus = ["all", "Pending", "Accept", "Cancel", "Delivery"]
 
     // Cancel order
     const handleCancelOrder = async (id) => {
 
-        const res = await fetch(`/api/order?id=${id}`,{
-            method:"PATCH",
-            headers:{
-                "Content-type":"Application/json",
+        const res = await fetch(`/api/order?id=${id}`, {
+            method: "PATCH",
+            headers: {
+                "Content-type": "Application/json",
             },
             body: JSON.stringify({
                 deliveryStatus: "Cancel"
             })
         });
         const data = await res.json();
-        if(data.success){
+        if (data.success) {
             setUpdateEffect(!updateEffect)
         }
     }
 
     // Accept order
     const handleAccept = async (id) => {
-
-        const res = await fetch(`/api/order?id=${id}`,{
-            method:"PATCH",
-            headers:{
-                "Content-type":"Application/json",
+        const res = await fetch(`/api/order?id=${id}`, {
+            method: "PATCH",
+            headers: {
+                "Content-type": "Application/json",
             },
             body: JSON.stringify({
                 deliveryStatus: "Accept"
             })
         });
         const data = await res.json();
-        if(data.success){
+        if (data.success) {
             setUpdateEffect(!updateEffect)
         }
     }
+
+
     useEffect(() => {
         const getOrders = async () => {
-            const res = await fetch(`/api/order`,{
-                method:"GET",
+            const res = await fetch(`/api/order?status=${isTab}`, {
+                method: "GET",
             })
-            const {orders} = await res.json();
+            const { orders } = await res.json();
             setOrders(orders);
         }
         getOrders();
-    },[updateEffect])
+    }, [updateEffect, isTab])
     return (
         <div>
             <div className='box '>
                 <div className='sm:flex items-center justify-between mb-5'>
                     <ul className='flex gap-3 items-center '>
-                        <li><Link className='text-sm hover:text-gray-900 uppercase font-medium text-gray-500' href="/">Pending</Link></li>
-                        <li><Link className='text-sm hover:text-gray-900 uppercase font-medium text-gray-500' href="/">Cancel</Link></li>
-                        <li><Link className='text-sm hover:text-gray-900 uppercase font-medium text-gray-500' href="/">Success</Link></li>
+
+                        {
+                            orderStatus?.map((status, index) => <li key={index}>
+                                <button onClick={() => setIsTab(status)}
+                                    className={`text-sm hover:text-gray-900 uppercase font-medium  ${isTab == status ? 'text-gray-900 underline' : "text-gray-500"} `}>
+                                    {status == "Deliver" ? "success" : status}
+
+                                </button>
+                            </li>)
+                        }
                     </ul>
-                    <Link href={'/'} className='btn btn-primary'>
+                    <Link href={'/createGig'} className='btn btn-primary'>
                         Create new Gig
                     </Link>
                 </div>
@@ -80,16 +91,16 @@ const OrderPage = () => {
                         </thead>
                         <tbody>
                             {
-                                orders?.map(order => <OrderRows 
-                                    key={order?._id} 
-                                    order={order} 
+                                orders?.map(order => <OrderRows
+                                    key={order?._id}
+                                    order={order}
                                     handleCancelOrder={handleCancelOrder}
                                     handleAccept={handleAccept}
                                     setUpdateEffect={setUpdateEffect}
                                     updateEffect={updateEffect}
-                                    /> )
+                                />)
                             }
-                            
+
                         </tbody>
                     </table>
                 </div>

@@ -2,7 +2,7 @@ import { FaCheck } from "react-icons/fa6";
 
 const ChoosePlansCard = ({ details }) => {
   return (
-    <div className="bg-white w-[300px] rounded-md p-5 hover:border-yellow-200 hover:border-2">
+    <div className="bg-white w-[300px] rounded-md p-5 border-2 hover:border-yellow-200 hover:border-2">
       <div className="flex justify-between">
         <h4 className="text-primary-color font-semibold">{details?.name}</h4>
         {details?.recommendation === "true" && (

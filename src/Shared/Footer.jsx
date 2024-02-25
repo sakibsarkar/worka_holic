@@ -50,7 +50,7 @@ const Footer = () => {
             </ul>
           </div>
           <div className="flex flex-col gap-3">
-            <h1 className="font-semibold text-xl text-white">Company</h1>
+            <h1 className="font-medium text-xl text-white">Company</h1>
             <ul>
               <Link href="/">
                 <li className="my-3 list-none text-white">About Us</li>

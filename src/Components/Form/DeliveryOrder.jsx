@@ -14,6 +14,8 @@ const DeliveryOrder = ({ setIsOpen, setUpdateEffect, updateEffect, id }) => {
             },
             body: JSON.stringify({
                 documentOrder,
+                deliveryStatus: "Delivery",
+
             })
         });
         const data = await res.json();

@@ -1,12 +1,34 @@
 import ConnectDB from "@/config/db/ConnectDB";
 import Order from "@/models/OrderModel";
+import { getServerSession } from "next-auth";
 import { NextResponse } from "next/server";
+import { authOptions } from "../auth/[...nextauth]/route";
 
-export const GET = async () => {
+export const GET = async (req) => {
     try {
         ConnectDB();
+        const session = await getServerSession(authOptions);
+        const gigOwnerId = session?.user?.id;
+        const status = req.nextUrl.searchParams.get("status");
 
-        const orders = await Order.find({}).populate('gigId').populate("ownerId").populate("clientId");
+        let query = {
+            ownerId: gigOwnerId
+        }
+        console.log(query);
+        if (status == 'Pending') {
+            query.deliveryStatus = "Pending"
+        }
+        if (status == 'Cancel') {
+            query.deliveryStatus = "Cancel"
+        }
+        if (status == 'Delivery') {
+            query.deliveryStatus = "Delivery"
+        }
+        if (status == 'Accept') {
+            query.deliveryStatus = "Accept"
+        }
+
+        const orders = await Order.find(query).populate('gigId').populate("ownerId").populate("clientId");
         return NextResponse.json({ message: "Get orders", success: true, orders }, { status: 200 })
     } catch (error) {
         return NextResponse.json({ message: error.message, success: false }, { status: 500 })

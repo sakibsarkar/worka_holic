@@ -64,12 +64,12 @@ const Navbar = () => {
           <Image src={logo} width={170} height={170} alt="logo" />
         </div>
 
-        <ul className="flex justify-center items-center gap-5 text-xl">
+        <ul className="flex justify-center items-center gap-5 text-lg">
           {
             routes.map((route, i) => <li key={i + "r"}>
               <Link
                 href={route.href}
-                className="font-bold"
+                className="font-medium"
                 id={route.href === path ? "active" : ""}
               >{route.text}</Link>
             </li>)
