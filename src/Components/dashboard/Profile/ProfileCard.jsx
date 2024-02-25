@@ -1,4 +1,5 @@
 "use client";
+import AddSkill from "@/Components/Form/userInfo/AddSkill";
 import Image from "next/image";
 import ModalBox from "@/Components/ui/ModalBox";
 import UpdateBio from "@/Components/Form/userInfo/UpdateBio";
@@ -19,6 +20,7 @@ const ProfileCard = ({ userData = {} }) => {
   const [isOpen, setIsOpen] = useState(false)
   const [isBio, setIsBio] = useState(false)
   const [isTitle, setIsTitle] = useState(false)
+  const [isSkill, setIsSkill] = useState(false)
 
 
   const userDetails = {
@@ -130,7 +132,10 @@ const ProfileCard = ({ userData = {} }) => {
         <div>
           <div className="flex justify-between mb-4">
             <p className="font-semibold">Skills</p>{" "}
-            <p className="text-sm">Add new</p>
+            <p className="text-sm cursor-pointer" onClick={() => setIsSkill(true)}>Add new</p>
+            <ModalBox title={"Add skill"} isOpen={isSkill} setIsOpen={setIsSkill}>
+              <AddSkill setIsOpen={setIsSkill} oldSkills={skills} />
+            </ModalBox>
           </div>
           <div className="flex flex-wrap gap-4">
             {skills?.map((skill, index) => (
