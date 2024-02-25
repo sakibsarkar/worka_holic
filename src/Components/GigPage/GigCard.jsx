@@ -8,13 +8,13 @@ const GigCard = ({ gig }) => {
 
     <div className="bg-white w-[300px] h-[380px] p-3 rounded-lg mx-auto">
       <div className="flex flex-col gap-4">
-        <div>
+        <div className="w-[276px] h-[165px] rounded-lg overflow-hidden">
           <Image
-            className="rounded-lg"
+            className="w-full h-full object-cover"
             width={300}
             height={250}
             src={image}
-            alt="asdf"
+            alt="gig img"
           />
         </div>
         <div className="flex gap-5">

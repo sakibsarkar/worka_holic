@@ -6,7 +6,7 @@ const MainLayout = ({ children }) => {
     return (
         <>
             <Navbar />
-            <Suspense>
+            <Suspense fallback={<div>Loading....</div>} >
                 {children}
             </Suspense>
             <Footer />
