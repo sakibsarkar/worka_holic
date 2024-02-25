@@ -4,7 +4,7 @@ import React from "react";
 import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
 
-const RegisterForm = () => {
+const RegisterForm = ({ selectedRole }) => {
   const { push } = useRouter();
   const handleSubmit = async e => {
     e.preventDefault();
@@ -18,7 +18,7 @@ const RegisterForm = () => {
     if (!email) return toast.warning("Email is required");
     if (!password) return toast.warning("Password is required");
 
-    const obj = { name, userName, email, password };
+    const obj = { name, userName, email, password, role: selectedRole };
     try {
       const res = await fetch(`/api/register`, {
         method: "POST",

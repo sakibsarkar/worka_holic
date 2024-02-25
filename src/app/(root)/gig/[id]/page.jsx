@@ -8,7 +8,7 @@ import { formatDate } from "@/utilsFunction/dateConverter";
 const GigDetails = async ({ params }) => {
 
     const id = params?.id;
-    const res = await fetch(`http://localhost:3000/api/query/gigs?gig_id=${id}`)
+    const res = await fetch(`https://workaholic-nextjs.vercel.app/api/query/gigs?gig_id=${id}`)
     const gigData = await res.json()
 
     const { _id, userId, image, rating, status, title, description, price, skills, deliveryTime } = gigData[0] || {}
