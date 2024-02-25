@@ -111,7 +111,7 @@ const CreateGig = () => {
         price: price,
         skills: selectedSkills,
         deliveryTime: Number(selectedDays),
-        category:selectedCategory,
+        category: selectedCategory,
       }
 
 

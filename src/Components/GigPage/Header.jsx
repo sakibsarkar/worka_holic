@@ -1,10 +1,14 @@
 "use client";
+import { useRouter } from "next/navigation";
 import { useRef } from "react";
 import { FaSearch } from "react-icons/fa";
 
 const category = ["Web developer", "Devops Engineer", "Full stack developer"];
 
-const Header = ({ setSearchValue, setCategory, setRating, setPriceRange }) => {
+const Header = ({ setCategory, setRating, setPriceRange, searchValue }) => {
+
+
+  const router = useRouter()
 
   // change search value
   const inputRef = useRef(null)
@@ -14,7 +18,7 @@ const Header = ({ setSearchValue, setCategory, setRating, setPriceRange }) => {
     const value = inputRef.current.value
     if (!value) return
     if (keyCode == 13) {
-      setSearchValue(value)
+      router.push(`/gig?search=${value}`)
       inputRef.current.blur()
     }
   }
@@ -23,7 +27,7 @@ const Header = ({ setSearchValue, setCategory, setRating, setPriceRange }) => {
   const handleButtonSearch = () => {
     const value = inputRef.current.value
     if (!value) return
-    setSearchValue(value)
+    router.push(`/gig?search=${value}`)
     inputRef.current.blur()
 
   }
@@ -38,6 +42,7 @@ const Header = ({ setSearchValue, setCategory, setRating, setPriceRange }) => {
           onKeyUp={hanldeSearch}
           placeholder="Search"
           ref={inputRef}
+          defaultValue={searchValue}
         />
         <button onClick={handleButtonSearch}>
           <FaSearch className="relative left-52 top-3" />

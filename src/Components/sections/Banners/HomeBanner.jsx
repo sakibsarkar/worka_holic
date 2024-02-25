@@ -1,9 +1,11 @@
-'use client'
-import PrimaryButton from '@/Components/buttons/PrimaryButton';
-import SelectBox from '@/Components/ui/SelectBox';
-import Image from 'next/image';
-import React, { useState } from 'react';
+"use client";
+import Image from "next/image";
+import PrimaryButton from "@/Components/buttons/PrimaryButton";
+import React, { useState } from "react";
+import SelectBox from "@/Components/ui/SelectBox";
+import { useRouter } from "next/navigation";
 import { IoSearchSharp } from "react-icons/io5";
+
 const selectElements = [
     { name: 'Web Design' },
     { name: 'Logo Design' },
@@ -15,6 +17,17 @@ const selectElements = [
 
 const HomeBanner = () => {
     const [selected, setSelected] = useState(selectElements[0])
+
+    const router = useRouter()
+
+    const handleSearch = (e) => {
+        const value = e.target.value;
+        const keyCode = e.keyCode;
+
+        if (keyCode == 13 && value) {
+            router.push(`/gig?search=${value}`)
+        }
+    }
 
     return (
         <section className='bg-primary-color'>
@@ -29,12 +42,13 @@ const HomeBanner = () => {
                                         <div className='py-3'>
                                             <IoSearchSharp size={25} className='text-gray-600' />
                                         </div>
-                                        <input type="text" className='py-2 w-full px-2 focus-visible:outline-none' placeholder='Search...' />
+                                        <input type="text" className='py-2 w-full px-2 focus-visible:outline-none' placeholder='Search...'
+                                            onKeyUp={handleSearch} />
                                     </div>
                                     <div className='py-3 border-y md:border-y-0 lg:border-x w-full'>
-                                        
+
                                         <SelectBox selectElements={selectElements} selected={selected} setSelected={setSelected} />
-                                       
+
                                     </div>
                                     <div className='py-3 text-center lg:text-left'>
                                         <PrimaryButton>
@@ -43,7 +57,7 @@ const HomeBanner = () => {
                                     </div>
                                 </div>
                                 <div className='flex flex-col lg:flex-row gap-2 text-white mb-4'>
-                                    <span>Popular Searches:</span> 
+                                    <span>Popular Searches:</span>
                                     <ul className='flex flex-wrap items-center gap-2'>
                                         <li><a href="" className=' hover:text-gray-200 transition-all ' >Data</a>,</li>
                                         <li><a href="" className=' hover:text-gray-200 transition-all ' >Web Design</a>,</li>
@@ -51,7 +65,7 @@ const HomeBanner = () => {
                                     </ul>
                                 </div>
                             </div>
-                           
+
 
                             <div>
                                 <p className='text-white mb-2 text-lg font-medium '>5k+ candidates get job</p>

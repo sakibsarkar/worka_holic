@@ -23,13 +23,8 @@ const GigCard = ({ gig }) => {
               className="w-full h-full object-cover"
               width={50}
               height={30}
-<<<<<<< HEAD
-              src={userId?.avater}
-              alt="Avater"
-=======
               src={userId?.avater || ""}
               alt=""
->>>>>>> 1046de0312ee4bf4716118360e2e87b21e4a3053
             />
           </div>
           <div>

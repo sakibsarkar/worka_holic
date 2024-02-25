@@ -3,6 +3,7 @@ import GigCard from "@/Components/GigPage/GigCard";
 import Header from "@/Components/GigPage/Header";
 import NoDataFound from "@/Components/Message/NoDataFound";
 import React, { useEffect, useState } from "react";
+import { useSearchParams } from "next/navigation";
 
 const AllGigs = () => {
 
@@ -13,7 +14,8 @@ const AllGigs = () => {
   const [isLoading, setIsLoading] = useState(true)
 
   // query filters
-  const [searchValue, setSearchValue] = useState("")
+  const searchParams = useSearchParams()
+  const searchValue = searchParams.get("search") || ""
   const [category, setCategory] = useState("")
   const [rating, setRating] = useState("")
   const [priceRange, setPriceRange] = useState("")
@@ -33,10 +35,10 @@ const AllGigs = () => {
   return (
     <div className="bg-gray-200 pb-20">
       <Header
-        setSearchValue={setSearchValue}
         setCategory={setCategory}
         setRating={setRating}
         setPriceRange={setPriceRange}
+        searchValue={searchValue}
 
       />
 
@@ -50,7 +52,7 @@ const AllGigs = () => {
           </div>
 
           :
-          
+
           <NoDataFound />
       }
 
