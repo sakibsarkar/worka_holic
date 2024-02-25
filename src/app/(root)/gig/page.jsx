@@ -32,6 +32,7 @@ const AllGigs = () => {
     handleData()
   }, [searchValue, category, rating, priceRange])
 
+  
   return (
     <div className="bg-gray-200 pb-20">
       <Header
