@@ -32,6 +32,7 @@ const AllGigs = () => {
     handleData()
   }, [searchValue, category, rating, priceRange])
 
+  
   return (
     <div className="bg-gray-200 pb-20">
       <Header
@@ -39,7 +40,6 @@ const AllGigs = () => {
         setRating={setRating}
         setPriceRange={setPriceRange}
         searchValue={searchValue}
-
       />
 
       {
@@ -50,10 +50,7 @@ const AllGigs = () => {
               <GigCard key={gig?._id} gig={gig} />
             ))}
           </div>
-
-          :
-
-          <NoDataFound />
+          :<NoDataFound />
       }
 
 
