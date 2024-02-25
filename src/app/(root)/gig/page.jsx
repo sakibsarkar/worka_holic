@@ -39,7 +39,6 @@ const AllGigs = () => {
         setRating={setRating}
         setPriceRange={setPriceRange}
         searchValue={searchValue}
-
       />
 
       {
@@ -50,10 +49,7 @@ const AllGigs = () => {
               <GigCard key={gig?._id} gig={gig} />
             ))}
           </div>
-
-          :
-
-          <NoDataFound />
+          :<NoDataFound />
       }
 
 
