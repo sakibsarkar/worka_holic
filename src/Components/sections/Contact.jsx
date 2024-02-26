@@ -39,7 +39,7 @@ const Contact = () => {
                     </div>
                     <div className="max-w-[600px]">
                         <h1 className="text-3xl font-semibold mt-8 lg:mt-0 mb-2">Workaholic</h1>
-                        <p>Welcome to Workaholic, your one-stop digital marketplace for all your professional needs! Whether you're a freelancer seeking new opportunities or a business in search of top talent, Workaholic connects you with the perfect match. Browse through a diverse range of services including graphic design, content writing, programming, and more</p>
+                        <p>Welcome to Workaholic, your one-stop digital marketplace for all your professional needs! Whether you are a freelancer seeking new opportunities or a business in search of top talent, Workaholic connects you with the perfect match. Browse through a diverse range of services including graphic design, content writing, programming, and more</p>
                         <button type={'button'} className={"btn text-white w-32 bg-primary-color mt-6 border hover:bg-gray-600 rounded-3xl hover:text-white "}>
                             Visit Us
                         </button>
