@@ -28,7 +28,6 @@ export const POST = async (req) => {
     try {
         ConnectDB()
         const body = await req.json()
-        console.log(body);
         await Gig.create(body)
         return NextResponse.json({ inserted: true, error: false })
     } catch (err) {
