@@ -1,16 +1,16 @@
-import React from 'react';
-import PrimaryButton from '../buttons/PrimaryButton';
+import PrimaryButton from "../buttons/PrimaryButton";
+import React from "react";
 
-const DeliveryOrder = ({setIsOpen,setUpdateEffect,updateEffect,id}) => {
+const DeliveryOrder = ({ setIsOpen, setUpdateEffect, updateEffect, id }) => {
     const handleOrderSubmit = async (e) => {
         e.preventDefault();
         const documentOrder = e.target.documentInput.value;
 
-
-        const res = await fetch(`/api/order?id=${id}`,{
-            method:"PATCH",
-            headers:{
-                "Content-type":"Application/json",
+        console.log(documentOrder);
+        const res = await fetch(`/api/order?id=${id}`, {
+            method: "PATCH",
+            headers: {
+                "Content-type": "Application/json",
             },
             body: JSON.stringify({
                 documentOrder,
@@ -19,7 +19,7 @@ const DeliveryOrder = ({setIsOpen,setUpdateEffect,updateEffect,id}) => {
             })
         });
         const data = await res.json();
-        if(data.success){
+        if (data.success) {
             console.log(data);
             setUpdateEffect(!updateEffect);
             setIsOpen(false)
@@ -28,7 +28,7 @@ const DeliveryOrder = ({setIsOpen,setUpdateEffect,updateEffect,id}) => {
     }
     return (
         <form onSubmit={handleOrderSubmit}>
-           <div className='mt-2'>
+            <div className='mt-2'>
                 <label htmlFor="" className='text-sm text-gray-500 mb-2 inline-block'>Work Document</label>
                 <textarea name="documentInput" id="" cols="30" rows="3" className='px-3 py-2 w-full focus-visible:outline-none border border-gray-200 rounded' placeholder='Work document...'></textarea>
             </div>

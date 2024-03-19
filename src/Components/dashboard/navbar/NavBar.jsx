@@ -19,6 +19,7 @@ const NavBar = () => {
         <div className="flex gap-6">
           <Link href={"/profile"}>Profile</Link>
           <Link href={"/dashboard/orders"}>Orders</Link>
+          <Link href={"/"}>Home</Link>
         </div>
       </div>
       <div className="flex justify-end gap-6 mr-5 relative w-[170px] cursor-pointer" onClick={() => setShow(!show)}>

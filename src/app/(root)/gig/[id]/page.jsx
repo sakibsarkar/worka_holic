@@ -1,19 +1,19 @@
-
 import Image from "next/image";
 import PackageCard from "@/Components/AllGigs/package/PackageCard";
-
 import { FaHouse, FaStar } from "react-icons/fa6";
+import { formatDate } from "@/utilsFunction/dateConverter";
+
 // import { formatDate } from "@/utilsFunction/dateConverter";
 
-const GigDetails = async ({params}) => {
+const GigDetails = async ({ params }) => {
 
     const id = params?.id;
-    const res = await fetch(`http://localhost:3000/api/query/gigs?gig_id=${id}`)
+    const res = await fetch(`https://workaholic-nextjs.vercel.app/api/query/gigs?gig_id=${id}`)
     const gigData = await res.json()
 
     const { _id, userId, image, rating, status, title, description, price, skills, deliveryTime } = gigData[0] || {}
     return (
-      
+
         <section className='mb-20'>
             <section className='mt-10 mb-8'>
                 <div className="box ">
@@ -115,7 +115,7 @@ const GigDetails = async ({params}) => {
                                             </div>
                                             <div>
                                                 <p className='text-gray-500 font-medium'>Member since</p>
-                                                {/* <p className='text-gray-600 font-semibold'>{formatDate(userId?.createdAt)}</p> */}
+                                                <p className='text-gray-600 font-semibold'>{formatDate(userId?.createdAt)}</p>
                                             </div>
                                         </div>
                                         <div className='grid md:grid-cols-2 gap-2'>
@@ -144,7 +144,7 @@ const GigDetails = async ({params}) => {
                         </div>
                         <div className='hidden lg:block lg:col-span-1'>
                             <div className=' sticky top-10 '>
-                                <PackageCard gigData={gigData[0]}  />
+                                <PackageCard gigData={gigData[0]} />
                             </div>
 
 
